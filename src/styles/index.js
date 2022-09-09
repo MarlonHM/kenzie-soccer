@@ -9,10 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
    :root {
       --yellow: #E6C619;
-      --yellow-1: #E6C619;
-      --yellow-2: #E6C619;
-      --yellow-3: #E6C619;
-      --yellow-4: rgba(174, 151, 25, 0.89);
+      --yellow-2: rgba(174, 151, 25, 0.89);
 
       --wine: #B50C27;
       --wine-3: #94163B;
