@@ -1,9 +1,26 @@
-import { Container } from "./style";
+import { Container, Content, Header, Body } from "./style";
+import { IoIosClose } from "react-icons/io";
 
-const Modal = () => {
+const Modal = ({ children, title, modalState, setModalState, ...rest }) => {
+  const handleCloseModal = (e) => {
+    if (e.target.id === "modal-background") {
+      setModalState(false);
+    }
+  };
+
+  const handleCloseModalBtn = (e) => {
+    console.log("clicked");
+  };
+
   return (
-    <Container>
-      <h1>Modal</h1>
+    <Container id="modal-background" onClick={(e) => handleCloseModal(e)}>
+      <Content>
+        <Header onClick={(e) => handleCloseModalBtn}>
+          <h2>{title}</h2>
+          <IoIosClose onClick={() => setModalState(false)} />
+        </Header>
+        <Body>{children}</Body>
+      </Content>
     </Container>
   );
 };
