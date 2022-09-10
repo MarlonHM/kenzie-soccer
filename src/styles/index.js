@@ -45,7 +45,7 @@ const GlobalStyle = createGlobalStyle`
       font-family: 'Inter', sans-serif;
    }
 
-   button {
+   h2, h3, button {
       font-family: 'Karantina', cursive;
    }
 

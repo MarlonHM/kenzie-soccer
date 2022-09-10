@@ -1,7 +1,10 @@
 import { DevsProvider } from "./devs";
+import { UserProvider } from "./User";
 
 const Providers = ({ children }) => {
-  return <DevsProvider>{children}</DevsProvider>;
+  return <UserProvider>
+      <DevsProvider>{children}</DevsProvider>
+    </UserProvider>;
 };
 
 export default Providers;
