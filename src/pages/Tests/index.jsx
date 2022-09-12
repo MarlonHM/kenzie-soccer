@@ -1,11 +1,9 @@
-import Button from "../../components/Button"
+import Input from "../../components/Input";
 
 const Test = () => {
     return (
         <div>
-        <Button primary titleButton="Teste de cor"/>
-        <Button secondary titleButton="Teste de cor"/>
-        <Button tertiary titleButton="Teste de cor"/>
+        <Input label='Teste:' name='teste' register={()=>{console.log('teste')}}/>
         </div>
     )
 }
