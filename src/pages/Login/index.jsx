@@ -6,10 +6,11 @@ import Button from "../../components/Button";
 import { useContext } from 'react';
 import { UserContext } from '../../providers/User';
 import { useHistory } from "react-router-dom";
+import Input from '../../components/Input';
 
 const Login = () => {
-    const history = useHistory()
-    const {login} = useContext(UserContext)
+const {login} = useContext(UserContext);
+    const history = useHistory();
 
     const schema = yup.object().shape({
         email: yup.string().email('Email invalido').required('Campo obrigatório: Email'),
@@ -28,11 +29,8 @@ const Login = () => {
             <CardDiv>
                 <h3>Entrar em Campo</h3>
                 <FormLogin onSubmit={handleSubmit(singIn)}>
-                    <input name="email" type='email' placeholder="Email" {...register('email')} />
-                    <span>{errors.email?.message}</span>
-
-                    <input name="password" type='password' placeholder="Senha" {...register('password')}/>
-                    <span>{errors.password?.message}</span>
+                    <Input label='Email:' name="email" type='email' placeholder="Email" register={register} erro={errors?.email} messageErro={errors.email?.message} />
+                    <Input label='Senha:' name="password" type='password' placeholder="Senha" register={register} erro={errors?.password} messageErro={errors.password?.message} />
                     
                     <Button primary titleButton='Enviar'/>
                 </FormLogin>

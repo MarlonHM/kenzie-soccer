@@ -1,5 +1,5 @@
 import { Container } from "./style";
-
+import {Link} from 'react-router-dom';
 import LogoCatar from "../../assets/logo.png";
 
 const Header = () => {
@@ -11,8 +11,8 @@ const Header = () => {
       </div>
 
       <div className="buttons-container">
-        <button>Fazer parte do time</button>
-        <button>Entrar em campo</button>
+        <Link to='/signUp'><button>Fazer parte do time</button></Link>
+        <Link to='/login'><button>Entrar em campo</button></Link>
       </div>
     </Container>
   );

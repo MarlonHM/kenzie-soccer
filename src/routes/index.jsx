@@ -19,7 +19,7 @@ const Routes = () => {
         {autenticated() ? <Test /> : <Redirect to="/login"/>}
         </Route>
         <Route path="/login">
-          <Login />
+        {!autenticated() ? <Login /> : <Redirect to="/dashboard"/>}
         </Route>
         <Route path="/dashboard">
         {autenticated() ? <Dashboard /> : <Redirect to="/login"/>}

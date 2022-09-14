@@ -14,6 +14,10 @@ export const ButtonColor = styled.button`
   border-radius: 0.2em;
   display: flex;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   @media (min-width: 360px) and (max-width: 650px) {
     border-radius: 0.3em;
     padding: 3vw;
