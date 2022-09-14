@@ -20,6 +20,7 @@ export const LabelInput = styled.label`
 export const InputArea = styled.input`
   border-color: ${props => (props.erro ? "red" : "var(--dark-grey)")};
   border-radius: 5px;
+  padding-left: 5px;
   @media (min-width: 360px) and (max-width: 650px) {
     height: 2rem;
   }
