@@ -6,23 +6,26 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Test from "../pages/Tests";
 
-export const privateAccess = ({children}) => {return }
+export const privateAccess = ({ children }) => {
+  return;
+};
 
 const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" >
+        <Route exact path="/">
           <Home />
         </Route>
         <Route path="/testes">
-        {autenticated() ? <Test /> : <Redirect to="/login"/>}
+          {autenticated() ? <Test /> : <Redirect to="/login" />}
         </Route>
         <Route path="/login">
           <Login />
         </Route>
         <Route path="/dashboard">
-        {autenticated() ? <Dashboard /> : <Redirect to="/login"/>}
+          {autenticated() ? <Dashboard /> : <Redirect to="/login" />}
+          <Dashboard />
         </Route>
       </Switch>
     </BrowserRouter>
