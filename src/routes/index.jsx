@@ -9,13 +9,15 @@ import UserModal from "../pages/UserModal";
 import ExitGroup from "../pages/ExitGroup";
 import SaveGuesses from "../pages/SaveGuesses";
 
-export const privateAccess = ({children}) => {return }
+export const privateAccess = ({ children }) => {
+  return;
+};
 
 const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" >
+        <Route exact path="/">
           <Home />
         </Route>
         <Route exact path="/user">
@@ -27,15 +29,12 @@ const Routes = () => {
         <Route exact path="/save">
           <SaveGuesses />
         </Route>
-        <Route path="/testes">
-          <Test />
-        {autenticated() ? <Test /> : <Redirect to="/login"/>}
-        </Route>
         <Route path="/login">
           <Login />
         </Route>
         <Route path="/dashboard">
-        {autenticated() ? <Dashboard /> : <Redirect to="/login"/>}
+          {autenticated() ? <Dashboard /> : <Redirect to="/login" />}
+          <Dashboard />
         </Route>
       </Switch>
     </BrowserRouter>
