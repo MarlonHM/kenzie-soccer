@@ -4,7 +4,7 @@ const Input = ({label, type='text', placeholder, erro, messageErro, register, na
     return (
       <ContainerInput>
         <LabelInput erro={erro}>{label}</LabelInput>
-        <InputArea type={type} placeholder={placeholder} erro={erro} {...register('test')}/>
+        <InputArea type={type} placeholder={placeholder} erro={erro} {...register(name)}/>
         {messageErro && <MessageErro>{messageErro}</MessageErro>}
       </ContainerInput>
     );
