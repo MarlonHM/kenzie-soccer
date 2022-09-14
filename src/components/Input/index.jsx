@@ -1,4 +1,4 @@
-import {ContainerInput, InputArea, LabelInput, MessageErro} from "./style";
+import { ContainerInput, InputArea, LabelInput, MessageErro } from "./style";
 
 const Input = ({label, type='text', placeholder, erro, messageErro, register, name}) => {
     return (
@@ -11,3 +11,4 @@ const Input = ({label, type='text', placeholder, erro, messageErro, register, na
   };
   
   export default Input;
+
