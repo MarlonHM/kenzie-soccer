@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import { autenticated } from "../auth";
+
 import Dashboard from "../pages/Dashboard";
 
 import Home from "../pages/Home";
@@ -8,14 +8,17 @@ import Test from "../pages/Tests";
 import UserModal from "../pages/UserModal";
 import ExitGroup from "../pages/ExitGroup";
 import SaveGuesses from "../pages/SaveGuesses";
-
-export const privateAccess = ({children}) => {return }
+import Sidebar from "../components/Sidebar";
+import { useContext } from "react";
+import { UserContext } from "../providers/User";
 
 const Routes = () => {
+  const { token } = useContext(UserContext);
+
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" >
+        <Route exact path="/">
           <Home />
         </Route>
         <Route exact path="/user">
@@ -29,13 +32,17 @@ const Routes = () => {
         </Route>
         <Route path="/testes">
           <Test />
-        {autenticated() ? <Test /> : <Redirect to="/login"/>}
+          {/* {autenticated() ? <Test /> : <Redirect to="/login" />} */}
         </Route>
         <Route path="/login">
-          <Login />
+          {token ? <Redirect to="/dashboard" /> : <Login />}
         </Route>
         <Route path="/dashboard">
-        {autenticated() ? <Dashboard /> : <Redirect to="/login"/>}
+          {token ? <Dashboard /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/sidebar">
+          <Sidebar />
         </Route>
       </Switch>
     </BrowserRouter>
