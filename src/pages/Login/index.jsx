@@ -6,11 +6,11 @@ import Button from "../../components/Button";
 import { useContext } from "react";
 import { UserContext } from "../../providers/User";
 import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
+import Input from "../../components/Input";
 
 const Login = () => {
-  const history = useHistory();
   const { login } = useContext(UserContext);
+  const history = useHistory();
 
   const schema = yup.object().shape({
     email: yup
@@ -31,35 +31,34 @@ const Login = () => {
 
   const singIn = (data) => {
     login(data);
-    history.push("/dashboard");
+    return history.push("/dashboard");
   };
-
-  useEffect(() => {
-    console.log("login");
-  }, []);
 
   return (
     <BackGroundDiv>
       <CardDiv>
         <h3>Entrar em Campo</h3>
         <FormLogin onSubmit={handleSubmit(singIn)}>
-          <input
+          <Input
+            label="Email:"
             name="email"
             type="email"
             placeholder="Email"
-            {...register("email")}
+            register={register}
+            erro={errors?.email}
+            messageErro={errors.email?.message}
           />
-          <span>{errors.email?.message}</span>
-
-          <input
+          <Input
+            label="Senha:"
             name="password"
             type="password"
             placeholder="Senha"
-            {...register("password")}
+            register={register}
+            erro={errors?.password}
+            messageErro={errors.password?.message}
           />
-          <span>{errors.password?.message}</span>
 
-          <Button type="submit" primary titleButton="Enviar" />
+          <Button primary titleButton="Enviar" />
         </FormLogin>
       </CardDiv>
     </BackGroundDiv>

@@ -1,31 +1,58 @@
-import { Container } from "./style";
-import { Content } from "./style";
-import { ContentButton } from "./style";
+import { Container, Content, ContentButton, FormSave } from "./style";
 import { useState } from "react";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
+import { useContext } from "react";
+import { UserContext } from "../../providers/User";
+import { useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const SaveGuesses = () => {
   const [modalState, setModalState] = useState(false);
+
+  const history = useHistory();
+  const { login } = useContext(UserContext);
+
+  const { handleSubmit } = useForm();
+
+  const singIn = (data) => {
+    login(data);
+    return history.push("/dashboard");
+  };
+  const handleCloseModal = (e) => {
+    if (e.target.id === "modal-background") {
+      setModalState(false);
+    }
+  };
 
   return (
     <Container>
       <button onClick={() => setModalState(true)}>Abrir Modal de testes</button>
       {modalState && (
         <Modal
-          title="Mudar nome do jogador"
+          title="Deseja salvar?"
           modalState={modalState}
           setModalState={setModalState}
         >
           <Content>
-            <p>
-              Os palpites salvos aqui servem para todos os grupos. Deseja
-              salvar?
-            </p>
-            <ContentButton>
-              <Button titleButton={"SIM"} primary />
-              <Button titleButton={"NÃO"} secondary />
-            </ContentButton>
+            <FormSave>
+              <p>
+                Os palpites salvos aqui servem para todos os grupos. Deseja
+                salvar?
+              </p>
+              <ContentButton>
+                <Button
+                  titleButton={"SIM"}
+                  primary
+                  onClick={handleSubmit(singIn)}
+                />
+                <Button
+                  titleButton={"NÃO"}
+                  secondary
+                  onClick={(e) => handleCloseModal(e)}
+                />
+              </ContentButton>
+            </FormSave>
           </Content>
         </Modal>
       )}

@@ -2,9 +2,9 @@ import { DevsProvider } from "./devs";
 import { UserProvider } from "./User";
 
 const Providers = ({ children }) => {
-  return <UserProvider>
+  return (<UserProvider>
       <DevsProvider>{children}</DevsProvider>
-    </UserProvider>;
+    </UserProvider>);
 };
 
 export default Providers;
