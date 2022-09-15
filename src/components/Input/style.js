@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ContainerInput = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: 'Alumni Sans', sans-serif;
+  font-family: "Alumni Sans", sans-serif;
   font-size: 1.6em;
   width: 80%;
   color: var(--dark-grey);
@@ -14,12 +14,13 @@ export const ContainerInput = styled.div`
 `;
 
 export const LabelInput = styled.label`
-  color: ${props => (props.erro ? "red" : "var(--dark-grey)")};
+  color: ${(props) => (props.erro ? "red" : "var(--dark-grey)")};
 `;
 
 export const InputArea = styled.input`
-  border-color: ${props => (props.erro ? "red" : "var(--dark-grey)")};
+  border-color: ${(props) => (props.erro ? "red" : "var(--dark-grey)")};
   border-radius: 5px;
+  padding-left: 5px;
   @media (min-width: 360px) and (max-width: 650px) {
     height: 2rem;
   }
