@@ -1,14 +1,14 @@
+import { useContext } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import { autenticated } from "../auth";
 import Dashboard from "../pages/Dashboard";
 
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Test from "../pages/Tests";
-
-export const privateAccess = ({children}) => {return }
+import { UserContext } from "../providers/User";
 
 const Routes = () => {
+  const {token} = useContext(UserContext);
   return (
     <BrowserRouter>
       <Switch>
@@ -16,13 +16,13 @@ const Routes = () => {
           <Home />
         </Route>
         <Route path="/testes">
-        {autenticated() ? <Test /> : <Redirect to="/login"/>}
+        {token ? <Test /> : <Redirect to="/login"/>}
         </Route>
         <Route path="/login">
-        {!autenticated() ? <Login /> : <Redirect to="/dashboard"/>}
+        {token ? <Redirect to="/dashboard"/> : <Login />}
         </Route>
         <Route path="/dashboard">
-        {autenticated() ? <Dashboard /> : <Redirect to="/login"/>}
+        {token ? <Dashboard /> : <Redirect to="/login"/>}
         </Route>
       </Switch>
     </BrowserRouter>

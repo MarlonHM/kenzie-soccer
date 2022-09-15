@@ -21,7 +21,7 @@ const {login} = useContext(UserContext);
 
     const singIn = (data) => {
         login(data)
-        return history.push('/dashboard')
+        history.push('/dashboard')
     }
 
     return(
