@@ -14,6 +14,7 @@ export const ButtonColor = styled.button`
   border-radius: 0.2em;
   display: flex;
 
+
   :hover {
     cursor: pointer;
   }

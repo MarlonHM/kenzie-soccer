@@ -9,7 +9,7 @@ export const ContainerInput = styled.div`
   color: var(--dark-grey);
 
   @media (min-width: 360px) and (max-width: 650px) {
-    font-size: 2em;
+    font-size: 1.2em;
   }
 `;
 
