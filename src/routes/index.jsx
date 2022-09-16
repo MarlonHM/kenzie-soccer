@@ -29,6 +29,7 @@ const Routes = () => {
         </Route>
         <Route path="/testes">
         {token ? <Test /> : <Redirect to="/login"/>}
+        </Route>
         <Route exact path="/user">
           <UserModal />
         </Route>
@@ -41,7 +42,7 @@ const Routes = () => {
         <Route path="/login">
         {token ?  <Redirect to="/dashboard"/> : <Login /> }
         </Route>
-        <Route path="/dashboard"><
+        <Route path="/dashboard">
         {token ? <Dashboard /> : <Redirect to="/login"/>}          
        </Route>
       </Switch>
