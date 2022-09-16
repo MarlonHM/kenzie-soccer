@@ -38,7 +38,7 @@ const {signUp} = useContext(UserContext);
                     <Input label='Nome:' name="name" type='text' placeholder="Neymar Jr" register={register} erro={errors?.name} messageErro={errors.name?.message} />
                     <Input label='Email:' name="email" type='email' placeholder="Email" register={register} erro={errors?.email} messageErro={errors.email?.message} />
                     <Input label='Senha:' name="password" type='password' placeholder="Senha" register={register} erro={errors?.password} messageErro={errors.password?.message} />
-                    <Input label='Confirmar senha:' name="conf_password" type='password' register={register} erro={errors?.conf_password} messageErro={errors.conf_password?.message} />
+                    <Input label='Confirmar senha:' name="conf_password" type='password' placeholder="Confirmar senha" register={register} erro={errors?.conf_password} messageErro={errors.conf_password?.message} />
                     
                     <Button primary titleButton='Cadastrar'/>
                 </FormLogin>

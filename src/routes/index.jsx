@@ -24,9 +24,7 @@ const Routes = () => {
         <Route exact path="/signUp">
           <SignUp />
         </Route>
-        <Route path="/testes">
-          {token ? <Test /> : <Redirect to="/login" />}
-        </Route>
+
         <Route exact path="/user">
           <UserModal />
         </Route>
@@ -42,10 +40,9 @@ const Routes = () => {
         <Route path="/dashboard">
           {token ? <Dashboard /> : <Redirect to="/login" />}
         </Route>
-
         <Route path="/sidebar">
           <Sidebar />
-        </Route>
+        </Route>     
       </Switch>
     </BrowserRouter>
   );
