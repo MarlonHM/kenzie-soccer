@@ -15,9 +15,6 @@ const Routes = () => {
         <Route exact path="/" >
           <Home />
         </Route>
-        <Route path="/testes">
-        {token ? <Test /> : <Redirect to="/login"/>}
-        </Route>
         <Route path="/login">
         {token ? <Redirect to="/dashboard"/> : <Login />}
         </Route>

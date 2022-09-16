@@ -11,7 +11,6 @@ export const UserProvider = ({children}) => {
         api.post('/login', data).then(res => {
                                         setToken(res.data.accessToken)
                                         localStorage.setItem('@Kenzie-soccer: token', res.data.accessToken)
-                                        return <Link to='/dashboard'/>
                                     })
                                 .catch(err => console.log(err));
     }
