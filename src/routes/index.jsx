@@ -9,14 +9,11 @@ import { UserContext } from "../providers/User";
 import UserModal from "../pages/UserModal";
 import ExitGroup from "../pages/ExitGroup";
 import SaveGuesses from "../pages/SaveGuesses";
-
-
-export const privateAccess = ({ children }) => {
-  return;
-};
+import Sidebar from "../components/Sidebar";
 
 const Routes = () => {
-  const {token } = useContext(UserContext);
+  const { token } = useContext(UserContext);
+
   return (
     <BrowserRouter>
       <Switch>
@@ -24,12 +21,10 @@ const Routes = () => {
           <Home />
         </Route>
 
-        <Route exact path="/signUp" >
-          <SignUp/>
+        <Route exact path="/signUp">
+          <SignUp />
         </Route>
-        <Route path="/testes">
-        {token ? <Test /> : <Redirect to="/login"/>}
-        </Route>
+
         <Route exact path="/user">
           <UserModal />
         </Route>
@@ -40,11 +35,14 @@ const Routes = () => {
           <SaveGuesses />
         </Route>
         <Route path="/login">
-        {token ?  <Redirect to="/dashboard"/> : <Login /> }
+          {token ? <Redirect to="/dashboard" /> : <Login />}
         </Route>
         <Route path="/dashboard">
-        {token ? <Dashboard /> : <Redirect to="/login"/>}          
-       </Route>
+          {token ? <Dashboard /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/sidebar">
+          <Sidebar />
+        </Route>     
       </Switch>
     </BrowserRouter>
   );
