@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const ButtonColor = styled.button`
-  background: ${props =>
+  background: ${(props) =>
     (props.primary && (props.primary ? "var(--wine)" : "white")) ||
     (props.secondary && (props.secondary ? "var(--light-pink)" : "white")) ||
     (props.tertiary ? "var(--wine-2)" : "white")};
 
-  color: ${props => (props.secondary ? "var(--wine-2)" : "var(--white)")};
+  color: ${(props) => (props.secondary ? "var(--wine-2)" : "var(--white)")};
   font-size: 1.2em;
   margin: 1vw;
   padding: 1vw 1.5vw;
@@ -14,7 +14,8 @@ export const ButtonColor = styled.button`
   border-radius: 0.2em;
   display: flex;
 
-  &:hover {
+
+  :hover {
     cursor: pointer;
   }
 

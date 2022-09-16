@@ -70,7 +70,7 @@ const GlobalStyle = createGlobalStyle`
 
    h2 {
       @media (max-width: 480px) {
-         font-size: 44px !important;
+         font-size: 40px !important;
       }
    }
 `;

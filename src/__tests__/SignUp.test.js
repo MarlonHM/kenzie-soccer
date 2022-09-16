@@ -7,11 +7,11 @@ import {
   act
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Login from "../pages/Login";
+import SignUp from "../pages/SignUp";
 import { BrowserRouter } from "react-router-dom";
 import Providers from "../providers";
 
-const mockLogin = jest.fn();
+const mockSignUp = jest.fn();
 
 // jest.mock("../providers/User", () => {
 //   return {
@@ -31,29 +31,35 @@ describe("Test for the page Login", () => {
     render(
       <BrowserRouter>
         <Providers>
-          <Login />
+          <SignUp />
         </Providers>
       </BrowserRouter>
     );
 
+    const name = screen.getByPlaceholderText("Neymar Jr");
     const email = screen.getByPlaceholderText("Email");
     const password = screen.getByPlaceholderText("Senha");
-    const button = screen.getByText("Enviar");
+    const conf_password = screen.getByPlaceholderText("Confirmar senha");
+    const button = screen.getByText("Cadastrar");
 
     act(() => {
-      userEvent.type(email, "email2@email.com");
+      userEvent.type(name, "teste");
+      userEvent.type(email, "email3@email.com");
       userEvent.type(password, "123456");
+      userEvent.type(conf_password, "123456");
       fireEvent.click(button);
     });
 
-    const dataEmail = await screen.findByDisplayValue("email2@email.com");
-    const dataPassword = await screen.findByDisplayValue("123456");
+    const dataName = await screen.findByDisplayValue("teste");
+    const dataEmail = await screen.findByDisplayValue("email3@email.com");
+    const dataPassword = await screen.findAllByDisplayValue("123456");
 
     waitFor(() => {
+      expect(dataName).toBeInTheDocument();
       expect(dataEmail).toBeInTheDocument();
       expect(dataPassword).toBeInTheDocument();
 
-      expect(mockSignUp).toHaveBeenCalled;
+      expect(mockLogin).toHaveBeenCalled;
     });
   });
 });
