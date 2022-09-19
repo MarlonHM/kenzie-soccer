@@ -28,8 +28,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider value={{ login, signUp, token }}>
-      {" "}
-      {children}{" "}
+      {children}
     </UserContext.Provider>
   );
 };
