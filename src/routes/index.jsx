@@ -11,6 +11,7 @@ import SaveGuesses from "../pages/SaveGuesses";
 import NewGroup from "../pages/NewGroup";
 import EditGroup from "../pages/EditGroup";
 import Sidebar from "../components/Sidebar";
+import UserGuess from "../pages/UserGuess";
 import NewGuesses from "../pages/NewGuesses";
 
 const Routes = () => {
@@ -50,6 +51,10 @@ const Routes = () => {
         </Route>
         <Route path="/dashboard">
           {token ? <Dashboard /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/userguess">
+          {/* {token ? <UserGuess /> : <Redirect to="/login" />} */}
+          <UserGuess />
         </Route>
         <Route path="/sidebar">
           <Sidebar />
