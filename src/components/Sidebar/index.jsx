@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Container, Content, Logo } from "./style";
+import { Container, Content, Global, Logo } from "./style";
 import { MobileContent } from "./style.js";
 import { FaReact } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
@@ -33,7 +33,7 @@ export default function Sidebar() {
   };
 
   return (
-    <>
+    <Global>
       <MobileContent>
         <FaBars onClick={handleVisible} />
       </MobileContent>
@@ -76,6 +76,6 @@ export default function Sidebar() {
           </Content>
         </Container>
       )}
-    </>
+    </Global>
   );
 }
