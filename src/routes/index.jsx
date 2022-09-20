@@ -10,6 +10,7 @@ import UserModal from "../pages/UserModal";
 import ExitGroup from "../pages/ExitGroup";
 import SaveGuesses from "../pages/SaveGuesses";
 import Sidebar from "../components/Sidebar";
+import GroupDetail from "../pages/GroupDetail";
 
 const Routes = () => {
   const { token } = useContext(UserContext);
@@ -42,7 +43,10 @@ const Routes = () => {
         </Route>
         <Route path="/sidebar">
           <Sidebar />
-        </Route>     
+        </Route>
+        <Route path="/groupDetail">
+          <GroupDetail />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
