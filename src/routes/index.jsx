@@ -4,11 +4,12 @@ import Dashboard from "../pages/Dashboard";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
-import Test from "../pages/Tests";
 import { UserContext } from "../providers/User";
 import UserModal from "../pages/UserModal";
 import ExitGroup from "../pages/ExitGroup";
 import SaveGuesses from "../pages/SaveGuesses";
+import NewGroup from "../pages/NewGroup";
+import EditGroup from "../pages/EditGroup";
 import Sidebar from "../components/Sidebar";
 import GroupDetail from "../pages/GroupDetail";
 
@@ -35,6 +36,15 @@ const Routes = () => {
         <Route exact path="/save">
           <SaveGuesses />
         </Route>
+
+        <Route exact path="/newgroup">
+          <NewGroup />
+        </Route>
+
+        <Route exact path="/EditGroup">
+          <EditGroup />
+        </Route>
+
         <Route path="/login">
           {token ? <Redirect to="/dashboard" /> : <Login />}
         </Route>

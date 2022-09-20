@@ -1,5 +1,27 @@
 import styled from "styled-components";
 
+export const Global = styled.div`
+  width: ${({ Extends }) => (Extends ? "10vw" : "5vw")};
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  transition: 0.2s ease-in-out;
+
+  @media (max-width: 1100px) {
+    width: ${({ Extends }) => (Extends ? "15vw" : "5vw")};
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    margin-top: 40px;
+    transition: 0.5s;
+  }
+`;
+
 export const Container = styled.div`
   width: ${({ Extends }) => (Extends ? "10vw" : "5vw")};
   height: 100vh;
