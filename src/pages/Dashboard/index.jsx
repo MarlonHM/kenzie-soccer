@@ -1,27 +1,142 @@
+import { useEffect } from "react";
+import { useContext, useState } from "react";
 import Button from "../../components/Button";
 import Dev from "../../components/Footer";
-import Input from "../../components/Input";
-import { Top, Username } from "./style";
+import { UserContext } from "../../providers/User";
+import api from "../../service";
+import jwt_decode from "jwt-decode";
+import Sidebar from "../../components/Sidebar";
+
+import {
+  CardGroup,
+  Container,
+  DivMessage,
+  Form,
+  Title,
+  Top,
+  Username,
+} from "./style";
 import { Buttons, Groups } from "./style";
 import { Search } from "./style";
+import { Redirect } from "react-router-dom";
+
+import Ellipse from "../../assets/Ellipse.png";
 
 const Dashboard = () => {
+  const { user, token } = useContext(UserContext);
+
+  const [userData, setUserData] = useState([]);
+  const [groups, setGroups] = useState([]);
+  const [visible, setVisible] = useState(false);
+
+  const infoUser = jwt_decode(token);
+  const idUser = infoUser.sub;
+
+  useEffect(() => {
+    api
+      .get("/groups", { headers: { Authorization: `Bearer ${token}` } })
+      .then((res) => {
+        setGroups(res.data);
+        showMessage();
+      })
+
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    api
+      .get(`/users/${idUser}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setUserData(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const search = (param) => {
+    api
+      .get("/groups", { headers: { Authorization: `Bearer ${token}` } })
+      .then((res) => {
+        setGroups(res.data.filter((item) => item.groupName.includes(param)));
+      })
+      .catch((err) => showMessage());
+  };
+
+  const myGroups = () => {
+    api
+      .get("/groups", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setGroups(
+          res.data.filter((groups) => groups.userId === Number(idUser))
+        );
+      })
+      .catch((err) => showMessage());
+  };
+
+  const allGroups = () => {
+    api
+      .get("/groups", { headers: { Authorization: `Bearer ${token}` } })
+      .then((grp) => {
+        console.log(grp);
+        setGroups(grp.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const showMessage = () => {
+    if (groups.length < 1) {
+      setVisible(true);
+    }
+  };
+
+  if (!token) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div>
+      <Sidebar />
+
       <Top />
       <Username>
-        <h3>É gol do User!</h3>
+        <h3>É gool do {userData.name}!!</h3>
         <h2>Entre nos seus grupos e aposte no melhor time.</h2>
       </Username>
       <Search>
-        <input type="text" placeholder="Pesquise um grupo" />
+        <Form onSubmit={search}>
+          <input
+            type="text"
+            placeholder="Pesquise um grupo"
+            onChange={(e) => search(e.target.value)}
+            // search={input}
+          />
+        </Form>
         <Buttons>
-          <Button primary titleButton="Todos os grupos" />
-          <Button secondary titleButton="Meus Grupos" />
+          <Button primary titleButton="Todos os grupos" onClick={allGroups} />
+          <Button secondary titleButton="Meus Grupos" onClick={myGroups} />
           <Button tertiary titleButton="Novo Grupo" />
         </Buttons>
       </Search>
-      <Groups></Groups>
+      <Groups>
+        {groups.length > 0
+          ? groups.map((group) => (
+              <CardGroup key={group.id}>
+                <img src={Ellipse} alt="Troféu" />
+                <Title>
+                  <h3>{group.groupName}</h3>
+                </Title>
+              </CardGroup>
+            ))
+          : visible && (
+              <DivMessage>
+                <h2>Nenhum grupo encontrado, pesquise novamente!</h2>
+              </DivMessage>
+            )}
+      </Groups>
+
       <Dev />
     </div>
   );
