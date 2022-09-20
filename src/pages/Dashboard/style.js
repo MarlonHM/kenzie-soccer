@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
+  margin-left: 50px;
 `;
 
 export const Top = styled.div`
@@ -9,6 +9,10 @@ export const Top = styled.div`
   width: 100%;
   max-width: 100vw;
   background-color: var(--wine);
+
+  @media (max-width: 768px) {
+    margin-top: 140px;
+  }
 `;
 
 export const Username = styled.div`
@@ -126,6 +130,10 @@ export const CardGroup = styled.div`
   padding: 15px;
   align-items: center;
   margin: 10px auto;
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const DivMessage = styled.div`

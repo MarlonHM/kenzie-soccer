@@ -18,12 +18,14 @@ import {
 } from "./style";
 import { Buttons, Groups } from "./style";
 import { Search } from "./style";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 import Ellipse from "../../assets/Ellipse.png";
+import { useGroupId } from "../../providers/Groups";
 
 const Dashboard = () => {
   const { user, token } = useContext(UserContext);
+  const { setGroupId } = useGroupId();
 
   const [userData, setUserData] = useState([]);
   const [groups, setGroups] = useState([]);
@@ -31,6 +33,8 @@ const Dashboard = () => {
 
   const infoUser = jwt_decode(token);
   const idUser = infoUser.sub;
+
+  const history = useHistory();
 
   useEffect(() => {
     api
@@ -92,51 +96,51 @@ const Dashboard = () => {
     }
   };
 
-  if (!token) {
-    return <Redirect to="/" />;
-  }
+  const Detail = (id) => {
+    setGroupId(id);
+    history.push("/groupDetail");
+  };
 
   return (
     <div>
-      <Sidebar />
-
-      <Top />
-      <Username>
-        <h3>É gool do {userData.name}!!</h3>
-        <h2>Entre nos seus grupos e aposte no melhor time.</h2>
-      </Username>
-      <Search>
-        <Form onSubmit={search}>
-          <input
-            type="text"
-            placeholder="Pesquise um grupo"
-            onChange={(e) => search(e.target.value)}
-            // search={input}
-          />
-        </Form>
-        <Buttons>
-          <Button primary titleButton="Todos os grupos" onClick={allGroups} />
-          <Button secondary titleButton="Meus Grupos" onClick={myGroups} />
-          <Button tertiary titleButton="Novo Grupo" />
-        </Buttons>
-      </Search>
-      <Groups>
-        {groups.length > 0
-          ? groups.map((group) => (
-              <CardGroup key={group.id}>
-                <img src={Ellipse} alt="Troféu" />
-                <Title>
-                  <h3>{group.groupName}</h3>
-                </Title>
-              </CardGroup>
-            ))
-          : visible && (
-              <DivMessage>
-                <h2>Nenhum grupo encontrado, pesquise novamente!</h2>
-              </DivMessage>
-            )}
-      </Groups>
-
+      <Container>
+        <Sidebar />
+        <Top />
+        <Username>
+          <h3>É gool do {userData.name}!!</h3>
+          <h2>Entre nos seus grupos e aposte no melhor time.</h2>
+        </Username>
+        <Search>
+          <Form onSubmit={search}>
+            <input
+              type="text"
+              placeholder="Pesquise um grupo"
+              onChange={(e) => search(e.target.value)}
+            />
+          </Form>
+          <Buttons>
+            <Button primary titleButton="Todos os grupos" onClick={allGroups} />
+            <Button secondary titleButton="Meus Grupos" onClick={myGroups} />
+            <Button tertiary titleButton="Novo Grupo" />
+          </Buttons>
+        </Search>
+        <Groups>
+          {groups.length > 0
+            ? groups.map((group) => (
+                <CardGroup key={group.id} onClick={() => Detail(group.id)}>
+                  <img src={Ellipse} alt="Troféu" />
+                  <Title>
+                    <h3>{group.groupName}</h3>
+                  </Title>
+                </CardGroup>
+              ))
+            : visible && (
+                <DivMessage>
+                  <h2>Nenhum grupo encontrado, pesquise novamente!</h2>
+                </DivMessage>
+              )}
+        </Groups>
+      </Container>
       <Dev />
     </div>
   );
