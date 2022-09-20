@@ -12,6 +12,7 @@ import NewGroup from "../pages/NewGroup";
 import EditGroup from "../pages/EditGroup";
 import Sidebar from "../components/Sidebar";
 import UserGuess from "../pages/UserGuess";
+import NewGuesses from "../pages/NewGuesses";
 
 const Routes = () => {
   const { token } = useContext(UserContext);
@@ -57,6 +58,9 @@ const Routes = () => {
         </Route>
         <Route path="/sidebar">
           <Sidebar />
+        </Route>
+        <Route path="/new-guesses">
+          {token ? <NewGuesses /> : <Redirect to="/login" />}
         </Route>
       </Switch>
     </BrowserRouter>

@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin-left: 50px;
+  @media (min-width: 768px) {
+    margin-left: 50px;
+  }
 `;
 
 export const Top = styled.div`
