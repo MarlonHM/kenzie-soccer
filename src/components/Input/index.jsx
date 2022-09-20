@@ -7,7 +7,9 @@ const Input = ({
   erro,
   messageErro,
   register,
+  rest,
   name,
+  onchange,
 }) => {
   return (
     <ContainerInput>
@@ -17,6 +19,8 @@ const Input = ({
         placeholder={placeholder}
         erro={erro}
         {...register(name)}
+        onChange={onchange}
+        {...rest}
       />
       {messageErro && <MessageErro>{messageErro}</MessageErro>}
     </ContainerInput>

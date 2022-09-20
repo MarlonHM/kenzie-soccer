@@ -12,16 +12,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 const EditGroup = () => {
   const [modalState, setModalState] = useState(false);
+  const [privateGroup, setPrivateGroup] = useState(false);
   const history = useHistory();
   const { login } = useContext(UserContext);
 
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório: Nome do grupo"),
-    password: yup
-      .string()
-
-      .required("Campo obrigatório: Senha")
-      .min(6, "Senha mínima: 6 carateres"),
+    privateGroup: yup.boolean().required(privateGroup),
+    password: yup.string().min(6, "Senha mínima: 6 carateres"),
   });
 
   const {
@@ -53,13 +51,14 @@ const EditGroup = () => {
                 register={register}
                 name="name"
               />
-              <input
-                label="Grupo privado?"
+              <Input
                 type="checkbox"
-                name="Grupo privado?"
+                register={register}
+                name="privateGroup"
+                label="Grupo privado?"
+                onchange={() => setPrivateGroup(!privateGroup)}
               />
-              if(input.checked)
-              {
+              {privateGroup && (
                 <Input
                   label="Senha do grupo"
                   type="password"
@@ -68,10 +67,18 @@ const EditGroup = () => {
                   register={register}
                   name="password"
                 />
-              }
+              )}
               <ContentButton>
-                <Button titleButton={"Excluir grupo"} secondary />
-                <Button titleButton={"Salvar alterações"} primary />
+                <Button
+                  titleButton={"Excluir grupo"}
+                  secondary
+                  onClick={handleSubmit(singIn)}
+                />
+                <Button
+                  titleButton={"Salvar alterações"}
+                  primary
+                  onClick={handleSubmit(singIn)}
+                />
               </ContentButton>
             </FormUser>
           </Content>

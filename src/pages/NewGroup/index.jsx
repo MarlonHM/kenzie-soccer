@@ -12,16 +12,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 const NewGroup = () => {
   const [modalState, setModalState] = useState(false);
+  const [privateGroup, setPrivateGroup] = useState(false);
   const history = useHistory();
   const { login } = useContext(UserContext);
 
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório: Nome do grupo"),
-    password: yup
-      .string()
-
-      .required("Campo obrigatório: Senha")
-      .min(6, "Senha mínima: 6 carateres"),
+    privateGroup: yup.boolean().required(privateGroup),
+    password: yup.string().min(6, "Senha mínima: 6 carateres"),
   });
 
   const {
@@ -53,13 +51,15 @@ const NewGroup = () => {
                 register={register}
                 name="name"
               />
-              <input
-                label="Grupo privado?"
+              <Input
                 type="checkbox"
-                name="Grupo privado?"
+                register={register}
+                name="privateGroup"
+                label="Grupo privado?"
+                onchange={() => setPrivateGroup(!privateGroup)}
               />
-              if(input.checked)
-              {
+
+              {privateGroup && (
                 <Input
                   label="Senha do grupo"
                   type="password"
@@ -68,9 +68,13 @@ const NewGroup = () => {
                   register={register}
                   name="password"
                 />
-              }
+              )}
               <ContentButton>
-                <Button titleButton={"Criar grupo"} primary />
+                <Button
+                  titleButton={"Criar grupo"}
+                  primary
+                  onClick={handleSubmit(singIn)}
+                />
               </ContentButton>
             </FormUser>
           </Content>
