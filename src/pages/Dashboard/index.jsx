@@ -18,13 +18,13 @@ import {
 } from "./style";
 import { Buttons, Groups } from "./style";
 import { Search } from "./style";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import Ellipse from "../../assets/Ellipse.png";
 import { useGroupId } from "../../providers/Groups";
 
 const Dashboard = () => {
-  const { user, token } = useContext(UserContext);
+  const { token } = useContext(UserContext);
   const { setGroupId } = useGroupId();
 
   const [userData, setUserData] = useState([]);

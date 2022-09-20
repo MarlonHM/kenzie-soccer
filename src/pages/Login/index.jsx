@@ -29,17 +29,10 @@ const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-<<<<<<< HEAD
-    const singIn = (data) => {
-        login(data)
-        history.push('/dashboard')
-    }
-=======
   const singIn = (data) => {
     login(data);
     return history.push("/dashboard");
   };
->>>>>>> develop
 
   return (
     <BackGroundDiv>
