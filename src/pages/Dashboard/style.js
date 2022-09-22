@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  @media (min-width: 768px) {
-    margin-left: 50px;
-  }
-`;
+export const Container = styled.div``;
 
 export const Top = styled.div`
   height: 15px;
@@ -32,6 +28,10 @@ export const Username = styled.div`
     color: #e6c619;
     font-weight: 400;
     font-size: 25px;
+  }
+
+  @media (min-width: 768px) {
+    margin-left: 150px;
   }
 `;
 

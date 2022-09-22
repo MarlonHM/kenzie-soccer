@@ -3,10 +3,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   height: 100%;
   max-height: 100vh;
-
-  @media (min-width: 768px) {
-    margin-left: 120px;
-  }
 `;
 
 export const Top = styled.div`
@@ -34,6 +30,10 @@ export const Username = styled.div`
 
   span {
     color: var(--wine);
+  }
+
+  @media (min-width: 768px) {
+    margin-left: 150px;
   }
 `;
 
@@ -90,10 +90,17 @@ export const GuessButton = styled.button`
   font-size: 20px;
 `;
 
+export const ButtonArea = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+`;
+
 export const Teams = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   margin: 15px auto;
   width: 100%;
   max-width: 175px;
@@ -103,7 +110,7 @@ export const Teams = styled.div`
   border-radius: 5px;
 `;
 
-export const Flag = styled.div`
+export const Flag = styled.img`
   display: flex;
   justify-content: center;
   margin: 0 auto;
