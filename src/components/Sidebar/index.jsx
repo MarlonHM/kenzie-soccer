@@ -10,10 +10,14 @@ import { FiLogOut } from "react-icons/fi";
 import { GiOnTarget } from "react-icons/gi";
 import { useHistory } from "react-router-dom";
 
+import UserModal from "../UserModal";
+
 export default function Sidebar() {
   const [Extends, setExtends] = useState(false);
   const [visible, setVisible] = useState(false);
   const history = useHistory();
+
+  const [modalUserState, setModalUserState] = useState(false);
 
   const handleExtend = () => {
     setExtends(!Extends);
@@ -61,10 +65,11 @@ export default function Sidebar() {
               <GiOnTarget />
               {Extends ? <h2>Palpites</h2> : <></>}
             </li>
-            <li onClick={() => history.push("/user")}>
+            <li onClick={() => setModalUserState(true)}>
               <FaUserEdit />
               {Extends ? <h2>Editar usuário</h2> : <></>}
             </li>
+
             <li onClick={() => goTo("/extra")}>
               <FaReact />
               {Extends ? <h2>Extra</h2> : <></>}
@@ -74,6 +79,12 @@ export default function Sidebar() {
               {Extends ? <h2>Logout</h2> : <></>}
             </li>
           </Content>
+          {modalUserState && (
+            <UserModal
+              modalUserState={modalUserState}
+              setModalUserState={setModalUserState}
+            />
+          )}
         </Container>
       )}
     </Global>
