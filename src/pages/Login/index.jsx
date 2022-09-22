@@ -31,7 +31,7 @@ const Login = () => {
 
   const singIn = (data) => {
     login(data);
-    return history.push("/dashboard");
+    history.push("/dashboard");
   };
 
   return (

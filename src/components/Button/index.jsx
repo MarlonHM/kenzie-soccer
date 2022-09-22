@@ -20,7 +20,11 @@ const Button = ({
           {titleButton}
         </ButtonColor>
       )}
-      {tertiary && <ButtonColor tertiary>{titleButton}</ButtonColor>}
+      {tertiary && (
+        <ButtonColor tertiary {...rest}>
+          {titleButton}
+        </ButtonColor>
+      )}
     </div>
   );
 };

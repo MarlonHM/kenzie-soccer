@@ -22,10 +22,13 @@ import { useHistory } from "react-router-dom";
 
 import Ellipse from "../../assets/Ellipse.png";
 import { useGroupId } from "../../providers/Groups";
+import NewGroup from "../../components/NewGroup";
 
 const Dashboard = () => {
-  const { token } = useContext(UserContext);
-  const { setGroupId } = useGroupId();
+
+  const { user, token } = useContext(UserContext);
+  const { setGroupId, modalState, setModalState } = useGroupId();
+
 
   const [userData, setUserData] = useState([]);
   const [groups, setGroups] = useState([]);
@@ -101,6 +104,7 @@ const Dashboard = () => {
     history.push("/groupDetail");
   };
 
+  console.log("modal", modalState);
   return (
     <div>
       <Container>
@@ -121,9 +125,14 @@ const Dashboard = () => {
           <Buttons>
             <Button primary titleButton="Todos os grupos" onClick={allGroups} />
             <Button secondary titleButton="Meus Grupos" onClick={myGroups} />
-            <Button tertiary titleButton="Novo Grupo" />
+            <Button
+              tertiary
+              titleButton="Novo Grupo"
+              onClick={() => setModalState(true)}
+            />
           </Buttons>
         </Search>
+        <div>{modalState && <NewGroup />}</div>
         <Groups>
           {groups.length > 0
             ? groups.map((group) => (

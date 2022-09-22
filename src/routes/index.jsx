@@ -5,14 +5,13 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import { UserContext } from "../providers/User";
-import UserModal from "../pages/UserModal";
-import ExitGroup from "../pages/ExitGroup";
-import SaveGuesses from "../pages/SaveGuesses";
-import NewGroup from "../pages/NewGroup";
-import EditGroup from "../pages/EditGroup";
 import Sidebar from "../components/Sidebar";
+
+import GroupDetail from "../pages/GroupDetail";
+
 import UserGuess from "../pages/UserGuess";
 import NewGuesses from "../pages/NewGuesses";
+
 
 const Routes = () => {
   const { token } = useContext(UserContext);
@@ -27,25 +26,6 @@ const Routes = () => {
         <Route exact path="/signUp">
           <SignUp />
         </Route>
-
-        <Route exact path="/user">
-          <UserModal />
-        </Route>
-        <Route exact path="/exit">
-          <ExitGroup />
-        </Route>
-        <Route exact path="/save">
-          <SaveGuesses />
-        </Route>
-
-        <Route exact path="/newgroup">
-          <NewGroup />
-        </Route>
-
-        <Route exact path="/EditGroup">
-          <EditGroup />
-        </Route>
-
         <Route path="/login">
           {token ? <Redirect to="/dashboard" /> : <Login />}
         </Route>
@@ -59,8 +39,13 @@ const Routes = () => {
         <Route path="/sidebar">
           <Sidebar />
         </Route>
+
+        <Route path="/groupDetail">
+          <GroupDetail />
+
         <Route path="/new-guesses">
           {token ? <NewGuesses /> : <Redirect to="/login" />}
+
         </Route>
       </Switch>
     </BrowserRouter>
