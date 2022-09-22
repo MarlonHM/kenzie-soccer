@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { createContext, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import api from "../../service";
 
 export const UserContext = createContext();
@@ -15,19 +15,20 @@ export const UserProvider = ({ children }) => {
       .then((res) => {
         setToken(res.data.accessToken);
         localStorage.setItem("@Kenzie-soccer: token", res.data.accessToken);
+        toast.success("Usuário logado com sucesso!");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("Usuário ou senha incorretos!"));
   };
 
   const signUp = (data) => {
     api
       .post("/users", data)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => toast.success("Usuário cadastrado com sucesso!"))
+      .catch((err) => toast.error("Usuário ou senha incorretos!"));
   };
 
   return (
-    <UserContext.Provider value={{ login, signUp, token }}>
+    <UserContext.Provider value={{ login, signUp, token, setToken }}>
       {children}
     </UserContext.Provider>
   );

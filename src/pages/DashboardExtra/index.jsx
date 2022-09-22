@@ -24,7 +24,7 @@ import Ellipse from "../../assets/Ellipse.png";
 import { useGroupId } from "../../providers/Groups";
 import NewGroup from "../../components/NewGroup";
 
-const Dashboard = () => {
+const DashboardExtra = () => {
   const { user, token } = useContext(UserContext);
   const { setGroupId, modalState, setModalState } = useGroupId();
 
@@ -108,7 +108,7 @@ const Dashboard = () => {
         <Top />
         <Username>
           <h3>É gool {userData.name}!!</h3>
-          <h2>Bem vindo confira sua pontuação!</h2>
+          <h2>Entre nos seus grupos e aposte no melhor time.</h2>
         </Username>
         <Search>
           <Form onSubmit={search}>
@@ -119,6 +119,7 @@ const Dashboard = () => {
             />
           </Form>
           <Buttons>
+            <Button primary titleButton="Todos os grupos" onClick={allGroups} />
             <Button secondary titleButton="Meus Grupos" onClick={myGroups} />
             <Button
               tertiary
@@ -150,4 +151,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardExtra;

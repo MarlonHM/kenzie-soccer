@@ -30,18 +30,33 @@ const GroupDetail = () => {
   } = useGroupId();
   const token = localStorage.getItem("@Kenzie-soccer: token");
   const [modalEditGroup, setModalEditGroup] = useState(false);
+  const [userData, setUserData] = useState([]);
+  const [userRanking, setUserRanking] = useState([]);
+  const [stateButton, setStateButton] = useState(false);
 
   const infoUser = jwt_decode(token);
   const idUser = infoUser.sub;
-  console.log("iduser", idUser);
 
   useEffect(() => {
     api
       .get(`/groups/${groupId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => setGroupData([res.data]))
+      .then((res) => {
+        setGroupData([res.data]);
+      })
       .catch((res) => console.log(res));
+  }, []);
+
+  useEffect(() => {
+    api
+      .get(`/users/${idUser}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setUserData(res.data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -59,8 +74,7 @@ const GroupDetail = () => {
                     <FaPencilAlt onClick={() => setModalEditGroup(true)} />
                   </span>{" "}
                 </h3>
-                {console.log("ranking", group.ranking)}
-                {group.ranking.includes(Number(idUser)) ? (
+                {stateButton || group.ranking.includes(Number(idUser)) ? (
                   <Button
                     secondary
                     titleButton="Inscrito"
@@ -70,7 +84,10 @@ const GroupDetail = () => {
                   <Button
                     primary
                     titleButton="Inscrever-se"
-                    onClick={() => subscription()}
+                    onClick={() => {
+                      subscription();
+                      setStateButton(true);
+                    }}
                   />
                 )}
               </ContentGroupData>
@@ -105,7 +122,7 @@ const GroupDetail = () => {
               <h4>6</h4>
             </TableDiv>
             <DescriptionUser>
-              <h3>Olá, Artur</h3>
+              <h3>Olá, {userData.name}</h3>
               <section>
                 Você está em <strong>5º lugar</strong>
               </section>
