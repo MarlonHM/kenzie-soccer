@@ -107,7 +107,7 @@ const Dashboard = () => {
         <Sidebar />
         <Top />
         <Username>
-          <h3>É gool do {userData.name}!!</h3>
+          <h3>É gool {userData.name}!!</h3>
           <h2>Entre nos seus grupos e aposte no melhor time.</h2>
         </Username>
         <Search>
