@@ -3,6 +3,7 @@ import { createContext, useState } from "react";
 import { UserContext } from "../User";
 import jwt_decode from "jwt-decode";
 import api from "../../service";
+import { toast } from "react-toastify";
 
 export const GroupContext = createContext();
 
@@ -10,7 +11,7 @@ export const GroupProvider = ({ children }) => {
   const [groupId, setGroupId] = useState();
   const [groupData, setGroupData] = useState([]);
   const [modalState, setModalState] = useState(false);
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState([]);
 
   const token = localStorage.getItem("@Kenzie-soccer: token");
 
@@ -40,7 +41,7 @@ export const GroupProvider = ({ children }) => {
 
   const subscription = () => {
     const { ranking } = groupData[0];
-    console.log("ranking", ranking);
+
     api
       .patch(
         `/groups/${groupId}`,
@@ -51,7 +52,7 @@ export const GroupProvider = ({ children }) => {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
-      .then((res) => console.log(res))
+      .then((res) => toast.success("Inscrito com sucesso!"))
       .catch((err) => console.log("erro", err));
 
     api
