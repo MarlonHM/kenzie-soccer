@@ -14,7 +14,7 @@ import jwt_decode from "jwt-decode";
 const UserModal = ({ modalUserState, setModalUserState }) => {
   const [user, setUser] = useState([]);
   const history = useHistory();
-  const { login, token } = useContext(UserContext);
+  const { token } = useContext(UserContext);
 
   const infoUser = jwt_decode(token);
   const idUser = infoUser.sub;
@@ -23,7 +23,6 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
     name: yup.string().required("Campo obrigatório: Nome"),
     password: yup
       .string()
-
       .required("Campo obrigatório: Senha")
       .min(6, "Senha mínima: 6 carateres"),
   });
@@ -34,9 +33,8 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const singIn = (data) => {
-    login(data);
-    return history.push("/dashboard");
+  const edit = (data) => {
+    console.log(data)
   };
 
   api
@@ -56,7 +54,7 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
         setModalState={setModalUserState}
       >
         <Content>
-          <FormUser onSubmit={handleSubmit(singIn)}>
+          <FormUser onSubmit={handleSubmit(edit)}>
             <Input
               label="Nome"
               placeholder={user.name}

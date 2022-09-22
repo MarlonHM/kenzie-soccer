@@ -26,6 +26,10 @@ export const UserProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
+  const editUser = (data) =>{
+    
+  }
+
   return (
     <UserContext.Provider value={{ login, signUp, token }}>
       {children}
