@@ -4,7 +4,6 @@ import ExitGroup from "../../components/ExitGroup";
 import Dev from "../../components/Footer";
 import Sidebar from "../../components/Sidebar";
 import { useGroupId } from "../../providers/Groups";
-import { useUser } from "../../providers/User";
 import api from "../../service/";
 import { FaPencilAlt } from "react-icons/fa";
 import {
@@ -29,11 +28,12 @@ const GroupDetail = () => {
     setModalState,
     subscription,
   } = useGroupId();
-  const { token } = useUser();
+  const token = localStorage.getItem("@Kenzie-soccer: token");
   const [modalEditGroup, setModalEditGroup] = useState(false);
 
   const infoUser = jwt_decode(token);
   const idUser = infoUser.sub;
+  console.log("iduser", idUser);
 
   useEffect(() => {
     api
@@ -60,7 +60,7 @@ const GroupDetail = () => {
                   </span>{" "}
                 </h3>
                 {console.log("ranking", group.ranking)}
-                {group.ranking.includes(idUser) ? (
+                {group.ranking.includes(Number(idUser)) ? (
                   <Button
                     secondary
                     titleButton="Inscrito"
