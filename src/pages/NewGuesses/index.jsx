@@ -24,7 +24,7 @@ import SaveGuesses from "../../components/SaveGuesses";
 
 const NewGuesses = () => {
   const { token } = useContext(UserContext);
-  const teams = useContext(TeamsContext);
+  const {teams} = useContext(TeamsContext);
   const { matches } = useContext(MatchesContext);
   const { modalState, setModalState } = useGroupId();
 

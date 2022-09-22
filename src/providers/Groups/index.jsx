@@ -17,6 +17,12 @@ export const GroupProvider = ({ children }) => {
   const infoUser = token && jwt_decode(token);
   const user = infoUser && infoUser.sub;
 
+  const creatGroup = (data) => {
+    api.post('/groups',data, {
+      headers: { Authorization: `Bearer ${token}` },
+    }).then(res => console.log(res)).catch(err => console.log(err))
+  }
+
   const updateUSer = () => {
     api
       .patch(
@@ -67,6 +73,7 @@ export const GroupProvider = ({ children }) => {
         modalState,
         setModalState,
         subscription,
+        creatGroup,
       }}
     >
       {children}

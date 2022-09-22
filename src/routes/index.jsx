@@ -26,14 +26,13 @@ const Routes = () => {
           <SignUp />
         </Route>
         <Route path="/login">
-          {token ? <Redirect to="/dashboard" /> : <Login />}
+          {token ? <Login /> : <Redirect to="/dashboard" />}
         </Route>
         <Route path="/dashboard">
           {token ? <Dashboard /> : <Redirect to="/login" />}
         </Route>
         <Route path="/userguess">
           {token ? <UserGuess /> : <Redirect to="/login" />}
-          <UserGuess />
         </Route>
         <Route path="/sidebar">
           <Sidebar />
