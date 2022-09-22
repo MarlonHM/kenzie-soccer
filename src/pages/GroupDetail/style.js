@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: 90vh;
+  height: 100vh;
   margin-top: 100px;
 
   h3 {
@@ -14,7 +14,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     margin-left: 150px;
   }
 `;
@@ -26,8 +26,8 @@ export const ContentGroupData = styled.div`
   align-items: center;
 
   button {
-    width: 100px;
-    padding-left: 30px;
+    width: 120px;
+    padding-left: 20px;
   }
 
   span {
@@ -50,6 +50,10 @@ export const Top = styled.div`
 
 export const ContentPage = styled.div`
   height: 80vh;
+
+  @media (max-width: 768px) {
+    margin-left: 150px;
+  }
 `;
 
 export const TableDiv = styled.div`
@@ -79,6 +83,11 @@ export const TableDiv = styled.div`
     font-weight: 400;
     border: 1px solid black;
   }
+
+  @media (max-width: 655px) {
+    width: 375px;
+    grid-template-columns: 100px 100px 100px 100px;
+  }
 `;
 
 export const GroupDescription = styled.div`
@@ -87,6 +96,10 @@ export const GroupDescription = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 80vh;
+
+  @media (max-width: 1355px) {
+    flex-direction: column;
+  }
 `;
 
 export const DescriptionUser = styled.div`

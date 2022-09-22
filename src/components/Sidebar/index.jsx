@@ -11,10 +11,12 @@ import { GiOnTarget } from "react-icons/gi";
 import { useHistory } from "react-router-dom";
 
 import UserModal from "../UserModal";
+import { useUser } from "../../providers/User";
 
 export default function Sidebar() {
   const [Extends, setExtends] = useState(false);
   const [visible, setVisible] = useState(false);
+  const { setToken } = useUser();
   const history = useHistory();
 
   const [modalUserState, setModalUserState] = useState(false);
@@ -30,6 +32,7 @@ export default function Sidebar() {
   const logout = () => {
     history.push("/");
     localStorage.clear();
+    setToken("");
   };
 
   const handleVisible = () => {
