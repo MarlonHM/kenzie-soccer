@@ -2,7 +2,7 @@
 
 Pensando em temas atuais, decidimos fazer nossa aplicação relacionado a Copa do mundo, já que teremos o grande evento este ano no país do Catar. Sabemos que existem vários problemas para solucionar, mas o mundo anda tão chato que decidimos fazer um aplicação relacionada a entretenimento, proporcionando uma interação entre pessoas que tenham este hobby em comum.
 
-Kenzie soccer é uma aplicação de apostas de futebol direcionado a copa do mundo. Foi criado por alunos da turma noturna de desenvolvimento front-end em 2022. Os apostadores poderão entrar ou criar grupos para participar de disputas de palpites, optando por escolher o time vencedor da partida ou apostar em um empate.
+Kenzie soccer é uma aplicação de apostas de futebol direcionado a copa do mundo. Foi criado por alunos da turma noturna de desenvolvimento front-end em 2022. Os apostadores poderão realizar palpites, optando por escolher o time vencedor da partida ou apostar em um empate.
 
 #Objetivo:
 Os participantes deverão informar palpites para os jogos de cada fase (fase de grupos, oitavas de final, quartas de final, semifinal, jogo para o 3º lugar e final). Vence o participante que somar mais pontos no final da copa.
