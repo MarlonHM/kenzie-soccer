@@ -19,9 +19,8 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
 
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório: Nome"),
-    password: yup
-      .string()
-      .min(6, "Senha mínima: 6 carateres")
+    email: yup
+      .string().email('Email inválido')
   });
 
 
@@ -54,12 +53,12 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
             />
 
             <Input
-              label="Senha"
-              type="password"
-              placeholder="Senha"
-              messageErro={errors.password?.message}
+              label="Email"
+              type="email"
+              placeholder={user.email}
+              messageErro={errors.email?.message}
               register={register}
-              name="password"
+              name="email"
             />
 
             <ContentButton>
