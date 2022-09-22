@@ -25,10 +25,7 @@ const NewGroup = () => {
 
   const schema = yup.object().shape({
     groupName: yup.string().required("Campo obrigatório: Nome do grupo"),
-    privateGroup: yup.boolean(),
-    passwordGroup: yup.string().min(6, "Senha mínima: 6 carateres").required().default('senhaforte'),
     userId: yup.number().default(Number(user)),
-    totalUsers: yup.number().default(ranking.length),
     ranking: yup.array().required().default(ranking),
   });
 
@@ -59,24 +56,6 @@ const NewGroup = () => {
                 register={register}
                 name="groupName"
               />
-              <Input
-                type="checkbox"
-                register={register}
-                name="privateGroup"
-                label="Grupo privado?"
-                onchange={() => setPrivateGroup(!privateGroup)}
-              />
-
-              {privateGroup && (
-                <Input
-                  label="Senha do grupo"
-                  type="password"
-                  placeholder="Senha para o Grupo"
-                  messageErro={errors.password?.message}
-                  register={register}
-                  name="passwordGroup"
-                />
-              )}
 
             <ContentButton>
               <Button

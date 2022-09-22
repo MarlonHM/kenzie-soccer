@@ -16,7 +16,7 @@ export const TeamsProvider = ({ children }) => {
       .then((res) => {
         setTeams(res.data);
       })
-      .catch((err) => console.log(err));
+      // .catch((err) => console.log(err));
   }, []);
   return (
     <TeamsContext.Provider value={{ teams }}>{children}</TeamsContext.Provider>

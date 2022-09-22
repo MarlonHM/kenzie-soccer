@@ -9,15 +9,16 @@ import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useGroupId } from "../../providers/Groups";
+import { GroupContext, useGroupId } from "../../providers/Groups";
 
 const EditGroup = ({ modalEditGroup, setModalEditGroup }) => {
   const history = useHistory();
-  const { login } = useContext(UserContext);
+  const { privateGroup, setPrivateGroup } = useContext(UserContext);
+  const {editGroup, deleteGroup} = useContext(GroupContext);
   const { groupData } = useGroupId();
 
   const schema = yup.object().shape({
-    name: yup.string().required("Campo obrigatório: Nome do grupo"),
+    groupName: yup.string().required("Campo obrigatório: Nome do grupo")
   });
 
   const {
@@ -25,6 +26,16 @@ const EditGroup = ({ modalEditGroup, setModalEditGroup }) => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+
+  const editGroupData = (data) => {
+    editGroup(data)
+    history.push('/dashboard')
+  };
+
+  const deleteGroupData = () => {
+    deleteGroup()
+    history.push('/dashboard')
+  };
 
   const { groupName } = groupData[0];
   return (
@@ -35,25 +46,25 @@ const EditGroup = ({ modalEditGroup, setModalEditGroup }) => {
         setModalState={setModalEditGroup}
       >
         <Content>
-          <FormUser>
-            <Input
-              label="Nome do Grupo"
-              placeholder={groupName}
-              messageErro={errors.name?.message}
-              register={register}
-              name="name"
-            />
+          <FormUser onSubmit={handleSubmit(editGroupData)}>
+          <Input
+                label="Nome do Grupo"
+                placeholder="Ex: Nome do Grupo"
+                messageErro={errors.name?.message}
+                register={register}
+                name="groupName"
+              />
 
             <ContentButton>
               <Button
                 titleButton={"Excluir grupo"}
                 secondary
-                onClick={handleSubmit()}
+                type="button"
+                onClick={() =>deleteGroupData()}
               />
               <Button
                 titleButton={"Salvar alterações"}
                 primary
-                onClick={handleSubmit()}
               />
             </ContentButton>
           </FormUser>

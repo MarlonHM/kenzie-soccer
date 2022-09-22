@@ -8,13 +8,11 @@ import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import api from "../../service";
 import jwt_decode from "jwt-decode";
 
 const UserModal = ({ modalUserState, setModalUserState }) => {
-  const [user, setUser] = useState([]);
   const history = useHistory();
-  const { token } = useContext(UserContext);
+  const { token, user, editUser } = useContext(UserContext);
 
   const infoUser = jwt_decode(token);
   const idUser = infoUser.sub;
@@ -23,9 +21,9 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
     name: yup.string().required("Campo obrigatório: Nome"),
     password: yup
       .string()
-      .required("Campo obrigatório: Senha")
-      .min(6, "Senha mínima: 6 carateres"),
+      .min(6, "Senha mínima: 6 carateres")
   });
+
 
   const {
     register,
@@ -34,17 +32,9 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const edit = (data) => {
-    console.log(data)
+    editUser(data);
+    history.push('/dashboard')
   };
-
-  api
-    .get(`/users/${idUser}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then((res) => {
-      setUser(res.data);
-    })
-    .catch((err) => console.log(err));
 
   return (
     <Container>
