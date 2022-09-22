@@ -6,7 +6,12 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import { UserContext } from "../providers/User";
 import Sidebar from "../components/Sidebar";
+
 import GroupDetail from "../pages/GroupDetail";
+
+import UserGuess from "../pages/UserGuess";
+import NewGuesses from "../pages/NewGuesses";
+
 
 const Routes = () => {
   const { token } = useContext(UserContext);
@@ -27,11 +32,20 @@ const Routes = () => {
         <Route path="/dashboard">
           {token ? <Dashboard /> : <Redirect to="/login" />}
         </Route>
+        <Route path="/userguess">
+          {/* {token ? <UserGuess /> : <Redirect to="/login" />} */}
+          <UserGuess />
+        </Route>
         <Route path="/sidebar">
           <Sidebar />
         </Route>
+
         <Route path="/groupDetail">
           <GroupDetail />
+
+        <Route path="/new-guesses">
+          {token ? <NewGuesses /> : <Redirect to="/login" />}
+
         </Route>
       </Switch>
     </BrowserRouter>

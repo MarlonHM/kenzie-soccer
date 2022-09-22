@@ -14,10 +14,9 @@ const RulesAndBenefits = () => {
 
         <div className="internal-container">
           <p>
-            Na aplicação existem grupos (públicos ou privados) com no mínimo 3
-            participantes, onde os mesmos deverão informar palpites para os
-            jogos de cada fase (Grupos, Oitavas, Quartas, Semifinais, 3º Lugar e
-            Final).
+            Na aplicação existem grupos (públicos ou privados) onde os
+            participantes deverão informar palpites para os jogos de cada fase
+            (Grupos, Oitavas, Quartas, Semifinais, 3º Lugar e Final).
           </p>
 
           <p>
