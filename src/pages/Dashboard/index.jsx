@@ -6,6 +6,7 @@ import { UserContext } from "../../providers/User";
 import api from "../../service";
 import jwt_decode from "jwt-decode";
 import Sidebar from "../../components/Sidebar";
+import { Return } from "../../components/ReturnButton";
 
 import {
   CardGroup,
@@ -107,6 +108,7 @@ const Dashboard = () => {
         <Sidebar />
         <Top />
         <Username>
+          <Return />
           <h3>É gool {userData.name}!!</h3>
           <h2>Entre nos seus grupos e aposte no melhor time.</h2>
         </Username>

@@ -20,6 +20,7 @@ import { MatchesContext } from "../../providers/Matches";
 import { FaSave } from "react-icons/fa";
 import { useGroupId } from "../../providers/Groups";
 import SaveGuesses from "../../components/SaveGuesses";
+import jwt_decode from "jwt-decode";
 // import Dev from "../../components/Footer";
 
 const NewGuesses = () => {
@@ -33,6 +34,11 @@ const NewGuesses = () => {
   const [team1, setTeam1] = useState();
   const [team2, setTeam2] = useState();
   // const [time, setTime] = useState();
+  const [playerGuess, setPlayerGuess] = useState();
+  const [userData, setUserData] = useState([]);
+
+  const infoUser = jwt_decode(token);
+  const idUser = infoUser.sub;
 
   function next() {
     setCount(count + 1);
@@ -63,6 +69,31 @@ const NewGuesses = () => {
     setTeam1(teams?.teams.find((id) => id.id === matches[count].team_home));
     setTeam2(teams?.teams.find((id) => id.id === matches[count].team_away));
   }, [matches]);
+
+  // const guesses = () => {
+  //   api
+  //     .get(`/users/${idUser}`, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     })
+  //     .then((res) => {
+  //       setUserData(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+
+  //   api
+  //     .post("/guesses", { headers: { Authorization: `Bearer ${token}` } })
+  //     .then((matches) => {
+  //       setPlayerGuess(
+  //         playerGuess.matches.find((id) => id.id === matches[count].id)
+  //       );
+  //       if (playerGuess === matches.result) {
+  //         idUser.totalPhase(count + 10);
+  //         idUser.totalScore(count + 10);
+  //       }
+  //     }
+  //   };
+
+  // };
 
   return (
     <div>
