@@ -87,7 +87,6 @@ const Dashboard = () => {
     api
       .get("/groups", { headers: { Authorization: `Bearer ${token}` } })
       .then((grp) => {
-        console.log(grp);
         setGroups(grp.data);
       })
       .catch((err) => console.log(err));
