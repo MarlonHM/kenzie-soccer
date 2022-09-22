@@ -2,16 +2,22 @@ import { Container, Content, FormUser, ContentButton } from "./style";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import Input from "../../components/Input";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../providers/User";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import api from "../../service";
+import jwt_decode from "jwt-decode";
 
 const UserModal = ({ modalUserState, setModalUserState }) => {
+  const [user, setUser] = useState([]);
   const history = useHistory();
-  const { login } = useContext(UserContext);
+  const { login, token } = useContext(UserContext);
+
+  const infoUser = jwt_decode(token);
+  const idUser = infoUser.sub;
 
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório: Nome"),
@@ -33,6 +39,15 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
     return history.push("/dashboard");
   };
 
+  api
+    .get(`/users/${idUser}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((res) => {
+      setUser(res.data);
+    })
+    .catch((err) => console.log(err));
+
   return (
     <Container>
       <Modal
@@ -44,7 +59,7 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
           <FormUser onSubmit={handleSubmit(singIn)}>
             <Input
               label="Nome"
-              placeholder="Ex: Nome de jogador"
+              placeholder={user.name}
               messageErro={errors.name?.message}
               register={register}
               name="name"

@@ -16,7 +16,7 @@ const UserGuess = () => {
       <header>
         <Sidebar />
         <DivHeader>
-          <h2>Palpites do campião</h2>
+          <h2>Palpites do campeão</h2>
           <Link to="/new-guesses">
             <Button primary titleButton="Novo Palpite" />
           </Link>
