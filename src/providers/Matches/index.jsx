@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { createContext, useState } from "react";
 
 import api from "../../service";
@@ -10,12 +10,14 @@ export const MatchesProvider = ({ children }) => {
   const [matches, setMatches] = useState([]);
   const { token } = useContext(UserContext);
 
-  api
-    .get("/matches", { headers: { Authorization: `Bearer ${token}` } })
-    .then((res) => {
-      setMatches(res.data);
-    })
-    .catch((err) => console.log(err));
+  useEffect(() => {
+    api
+      .get("/matches", { headers: { Authorization: `Bearer ${token}` } })
+      .then((res) => {
+        setMatches(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <MatchesContext.Provider value={{ matches }}>
       {children}
