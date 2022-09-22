@@ -26,6 +26,12 @@ export const Username = styled.div`
     color: var(--dark-grey);
     font-weight: 400;
     font-size: 25px;
+
+    svg {
+      font-size: 25px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
   }
 
   span {
