@@ -34,6 +34,7 @@ export const GroupProvider = ({ children }) => {
 
   const subscription = () => {
     const { ranking } = groupData[0];
+    console.log("ranking", ranking);
     api
       .patch(
         `/groups/${groupId}`,

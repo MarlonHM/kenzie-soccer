@@ -18,6 +18,7 @@ import {
 } from "./style";
 import { useState } from "react";
 import EditGroup from "../../components/EditGroup";
+import jwt_decode from "jwt-decode";
 
 const GroupDetail = () => {
   const {
@@ -30,6 +31,9 @@ const GroupDetail = () => {
   } = useGroupId();
   const { token } = useUser();
   const [modalEditGroup, setModalEditGroup] = useState(false);
+
+  const infoUser = jwt_decode(token);
+  const idUser = infoUser.sub;
 
   useEffect(() => {
     api
@@ -55,8 +59,8 @@ const GroupDetail = () => {
                     <FaPencilAlt onClick={() => setModalEditGroup(true)} />
                   </span>{" "}
                 </h3>
-
-                {group.ranking.includes(group.userId) ? (
+                {console.log("ranking", group.ranking)}
+                {group.ranking.includes(idUser) ? (
                   <Button
                     secondary
                     titleButton="Inscrito"
