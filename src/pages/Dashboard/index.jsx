@@ -25,10 +25,8 @@ import { useGroupId } from "../../providers/Groups";
 import NewGroup from "../../components/NewGroup";
 
 const Dashboard = () => {
-
   const { user, token } = useContext(UserContext);
   const { setGroupId, modalState, setModalState } = useGroupId();
-
 
   const [userData, setUserData] = useState([]);
   const [groups, setGroups] = useState([]);
@@ -103,7 +101,6 @@ const Dashboard = () => {
     history.push("/groupDetail");
   };
 
-  console.log("modal", modalState);
   return (
     <div>
       <Container>

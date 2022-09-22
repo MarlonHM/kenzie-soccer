@@ -61,7 +61,7 @@ export default function Sidebar() {
               <FaHome />
               {Extends ? <h2>Dashboard</h2> : <></>}
             </li>
-            <li onClick={() => goTo("/guess")}>
+            <li onClick={() => goTo("/userguess")}>
               <GiOnTarget />
               {Extends ? <h2>Palpites</h2> : <></>}
             </li>
@@ -70,10 +70,6 @@ export default function Sidebar() {
               {Extends ? <h2>Editar usuário</h2> : <></>}
             </li>
 
-            <li onClick={() => goTo("/extra")}>
-              <FaReact />
-              {Extends ? <h2>Extra</h2> : <></>}
-            </li>
             <li onClick={() => logout()}>
               <FiLogOut />
               {Extends ? <h2>Logout</h2> : <></>}

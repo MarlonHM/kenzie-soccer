@@ -12,7 +12,6 @@ import GroupDetail from "../pages/GroupDetail";
 import UserGuess from "../pages/UserGuess";
 import NewGuesses from "../pages/NewGuesses";
 
-
 const Routes = () => {
   const { token } = useContext(UserContext);
 
@@ -33,7 +32,7 @@ const Routes = () => {
           {token ? <Dashboard /> : <Redirect to="/login" />}
         </Route>
         <Route path="/userguess">
-          {/* {token ? <UserGuess /> : <Redirect to="/login" />} */}
+          {token ? <UserGuess /> : <Redirect to="/login" />}
           <UserGuess />
         </Route>
         <Route path="/sidebar">
@@ -42,10 +41,10 @@ const Routes = () => {
 
         <Route path="/groupDetail">
           <GroupDetail />
+        </Route>
 
         <Route path="/new-guesses">
           {token ? <NewGuesses /> : <Redirect to="/login" />}
-
         </Route>
       </Switch>
     </BrowserRouter>
