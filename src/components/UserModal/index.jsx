@@ -8,25 +8,21 @@ import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import api from "../../service";
 import jwt_decode from "jwt-decode";
 
 const UserModal = ({ modalUserState, setModalUserState }) => {
-  const [user, setUser] = useState([]);
   const history = useHistory();
-  const { login, token } = useContext(UserContext);
+  const { token, user, editUser } = useContext(UserContext);
 
   const infoUser = jwt_decode(token);
   const idUser = infoUser.sub;
 
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório: Nome"),
-    password: yup
-      .string()
-
-      .required("Campo obrigatório: Senha")
-      .min(6, "Senha mínima: 6 carateres"),
+    email: yup
+      .string().email('Email inválido')
   });
+
 
   const {
     register,
@@ -34,19 +30,10 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const singIn = (data) => {
-    login(data);
-    return history.push("/dashboard");
+  const edit = (data) => {
+    editUser(data);
+    history.push('/dashboard')
   };
-
-  api
-    .get(`/users/${idUser}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then((res) => {
-      setUser(res.data);
-    })
-    .catch((err) => console.log(err));
 
   return (
     <Container>
@@ -56,7 +43,7 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
         setModalState={setModalUserState}
       >
         <Content>
-          <FormUser onSubmit={handleSubmit(singIn)}>
+          <FormUser onSubmit={handleSubmit(edit)}>
             <Input
               label="Nome"
               placeholder={user.name}
@@ -66,12 +53,12 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
             />
 
             <Input
-              label="Senha"
-              type="password"
-              placeholder="Senha"
-              messageErro={errors.password?.message}
+              label="Email"
+              type="email"
+              placeholder={user.email}
+              messageErro={errors.email?.message}
               register={register}
-              name="password"
+              name="email"
             />
 
             <ContentButton>
