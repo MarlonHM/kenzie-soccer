@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const DivContainer = styled.div`
   width: 100%;
   height: 100%;
+
+  @media (max-width: 768px) {
+    margin-top: 150px;
+  }
 `;
 
 export const DivHeader = styled.div`
@@ -93,6 +97,8 @@ export const TableSection = styled.table`
 
 export const Footer = styled.div`
   clear: both;
+
   position: absolute;
   bottom: 0;
+
 `;

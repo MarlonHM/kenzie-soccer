@@ -1,5 +1,6 @@
 import { DevsProvider } from "./devs";
 import { GroupProvider } from "./Groups";
+import { GuessProvider } from "./guess";
 import { MatchesProvider } from "./Matches";
 import { TeamsProvider } from "./Teams";
 import { UserProvider } from "./User";
@@ -10,7 +11,9 @@ const Providers = ({ children }) => {
       <UserProvider>
         <TeamsProvider>
           <MatchesProvider>
-            <DevsProvider>{children}</DevsProvider>
+            <GuessProvider>
+              <DevsProvider>{children}</DevsProvider>
+            </GuessProvider>
           </MatchesProvider>
         </TeamsProvider>
       </UserProvider>
