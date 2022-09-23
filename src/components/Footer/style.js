@@ -6,7 +6,11 @@ export const Container = styled.footer`
   justify-content: center;
   background: #333;
   height: 94px;
+  width: 100%;
+  max-width: 100vw;
   border-top: 26px solid #b6273a;
+  z-index: 100;
+  position: absolute;
 
   span {
     display: flex;

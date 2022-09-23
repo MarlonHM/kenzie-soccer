@@ -4,19 +4,17 @@ import Dashboard from "../pages/Dashboard";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
-import Test from "../pages/Tests";
 import { UserContext } from "../providers/User";
-import UserModal from "../pages/UserModal";
-import ExitGroup from "../pages/ExitGroup";
-import SaveGuesses from "../pages/SaveGuesses";
+import Sidebar from "../components/Sidebar";
 
+import GroupDetail from "../pages/GroupDetail";
 
-export const privateAccess = ({ children }) => {
-  return;
-};
+import UserGuess from "../pages/UserGuess";
+import NewGuesses from "../pages/NewGuesses";
 
 const Routes = () => {
-  const {token } = useContext(UserContext);
+  const { token } = useContext(UserContext);
+
   return (
     <BrowserRouter>
       <Switch>
@@ -24,27 +22,31 @@ const Routes = () => {
           <Home />
         </Route>
 
-        <Route exact path="/signUp" >
-          <SignUp/>
-        </Route>
-        <Route path="/testes">
-        {token ? <Test /> : <Redirect to="/login"/>}
-        </Route>
-        <Route exact path="/user">
-          <UserModal />
-        </Route>
-        <Route exact path="/exit">
-          <ExitGroup />
-        </Route>
-        <Route exact path="/save">
-          <SaveGuesses />
+        <Route exact path="/signUp">
+          <SignUp />
         </Route>
         <Route path="/login">
-        {token ?  <Redirect to="/dashboard"/> : <Login /> }
+
+          {!token ? <Login /> : <Redirect to="/dashboard" />}
+
         </Route>
         <Route path="/dashboard">
-        {token ? <Dashboard /> : <Redirect to="/login"/>}          
-       </Route>
+          {token ? <Dashboard /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/userguess">
+          {token ? <UserGuess /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/sidebar">
+          <Sidebar />
+        </Route>
+
+        <Route path="/groupDetail">
+          <GroupDetail />
+        </Route>
+
+        <Route path="/new-guesses">
+          {token ? <NewGuesses /> : <Redirect to="/login" />}
+        </Route>
       </Switch>
     </BrowserRouter>
   );
