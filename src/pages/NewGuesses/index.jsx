@@ -34,9 +34,11 @@ const NewGuesses = () => {
   const [team1, setTeam1] = useState();
   const [team2, setTeam2] = useState();
 
+
   const [team1Id, setTeam1Id] = useState();
   const [team2Id, setTeam2Id] = useState();
   const [matchId, setMatchId] = useState();
+
 
   const infoUser = jwt_decode(token);
   const idUser = infoUser.sub;
@@ -57,13 +59,17 @@ const NewGuesses = () => {
       setTeam2Id(matches[count].team_away);
       setMatchId(matches[count].id);
       setTeam1(teams?.teams.find((id) => id.id === matches[count].team_home));
-      setTeam2(teams?.teams.find((id) => id.id === matches[count].team_away));
+      setTeam2(teams?.teams.find((id) => id.id === matches[count].team_away));      
     }
-    if (matches[count]?.phase === "round16") {
+     if (matches[count]?.phase === "round16") {
       alert("Espere a próxima rodada");
       setCount(0);
     }
+
   }, [count, matches]);
+
+ 
+
 
   const guesses = (teamId, matchId) => {
     api
@@ -83,6 +89,10 @@ const NewGuesses = () => {
       .catch((err) => console.log(err));
   };
 
+ 
+
+ 
+
   return (
     <div>
       <Container>
@@ -96,6 +106,8 @@ const NewGuesses = () => {
         <Title>
           <h3>Palpites de Hoje</h3>
         </Title>
+
+
 
         <Matches>
           <Teams>

@@ -101,6 +101,50 @@ export const Content = styled.ul`
   li svg:hover {
     color: #fff;
   }
+  li.contrution svg {
+    color: var(--light-grey);
+  }
+  li.contrution:hover {
+    cursor: default;
+  }
+
+  li.tooltip {
+    position: relative;
+  }
+
+  li.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--yellow);
+    color: var(--dark-grey);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: -70%;
+    left: 100%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  li.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    rotate: 180deg;
+    left: 50%;
+    margin-left: -50px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--yellow) transparent transparent transparent;
+  }
+
+  li.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
 
   @media (max-width: 768px) {
     flex-direction: row;

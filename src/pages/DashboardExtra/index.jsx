@@ -28,7 +28,7 @@ const DashboardExtra = () => {
   const { user, token } = useContext(UserContext);
   const { setGroupId, modalState, setModalState } = useGroupId();
 
-  const [userData, setUserData] = useState([]);
+   
   const [groups, setGroups] = useState([]);
   const [visible, setVisible] = useState(false);
 
@@ -38,7 +38,7 @@ const DashboardExtra = () => {
   const history = useHistory();
 
   useEffect(() => {
-    api
+    api    
       .get("/groups", { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
         setGroups(res.data);

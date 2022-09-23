@@ -8,6 +8,7 @@ import { FaUserEdit } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { GiOnTarget } from "react-icons/gi";
+import { HiUserGroup } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
 
 import UserModal from "../UserModal";
@@ -71,6 +72,11 @@ export default function Sidebar() {
             <li onClick={() => setModalUserState(true)}>
               <FaUserEdit />
               {Extends ? <h2>Editar usuário</h2> : <></>}
+            </li>
+            <li className="contrution tooltip">
+              <HiUserGroup />
+              <span class="tooltiptext"><strong>CUIDADO!</strong> <br /> Área em construção</span>
+              {Extends ? <h2>Grupos</h2> : <></>}
             </li>
 
             <li onClick={() => logout()}>
