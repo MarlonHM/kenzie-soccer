@@ -22,7 +22,8 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
 
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório: Nome"),
-    email: yup.string().email("Email inválido"),
+    email: yup.string().email('Email inválido').required("Campo obrigatório: Email")
+
   });
 
   const {
@@ -33,9 +34,12 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
 
   const edit = (data) => {
     editUser(data);
+
+
     toast.success("Usuário alterado com sucesso!");
     setModalUserState(false);
     history.push("/dashboard");
+
   };
 
   return (
@@ -58,7 +62,7 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
             <Input
               label="Email"
               type="email"
-              placeholder={user.email}
+              value={user.email}
               messageErro={errors.email?.message}
               register={register}
               name="email"

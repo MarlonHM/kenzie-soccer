@@ -40,10 +40,15 @@ export const UserProvider = ({ children }) => {
     }).then(res => setUser(res.data)).catch(err => console.log(err))
   }
 
+  getUser();
+
   const editUser = (data) =>{
     api.patch(`/users/${userId}`, data, {
       headers: { Authorization: `Bearer ${token}` },
-    }).then(res => console.log(res)).catch(err=> console.log(err))
+    }).then((res) => {
+    setTimeout(window.location.reload(false), 10000)
+    toast.success("Usuário foi editado com sucesso!")
+      }).catch((err)=> toast.error("Ops, algo deu errado! Tente depois :D"))
   }
 
   return (

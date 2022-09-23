@@ -4,6 +4,7 @@ const Input = ({
   label,
   type = "text",
   placeholder,
+  value,
   erro,
   messageErro,
   register,
@@ -17,6 +18,7 @@ const Input = ({
       <InputArea
         type={type}
         placeholder={placeholder}
+        defaultValue={value}
         erro={erro}
         {...register(name)}
         onChange={onchange}

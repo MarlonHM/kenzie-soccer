@@ -11,7 +11,10 @@ import { useGuess } from "../../providers/guess";
 const DashComponent = () => {
   const { user, token } = useContext(UserContext);
   const [userData, setUserData] = useState([]);
+
+
   const { totalScore } = useGuess();
+
 
   const infoUser = jwt_decode(token);
   const idUser = infoUser.sub;
