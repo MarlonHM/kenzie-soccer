@@ -16,7 +16,13 @@ export const DivHeader = styled.div`
     font-size: 3rem;
   }
   @media (min-width: 360px) and (max-width: 650px) {
+    width: 100%;
+    margin: 0;
     margin-top: 4rem;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     h2 {
       color: var(--dark-grey);
