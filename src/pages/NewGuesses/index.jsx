@@ -25,73 +25,73 @@ import jwt_decode from "jwt-decode";
 
 const NewGuesses = () => {
   const { token } = useContext(UserContext);
-  const {teams} = useContext(TeamsContext);
+  const teams = useContext(TeamsContext);
   const { matches } = useContext(MatchesContext);
-  const { modalState, setModalState } = useGroupId();
+  // const { modalState, setModalState } = useGroupId();
 
   const [count, setCount] = useState(0);
 
   const [team1, setTeam1] = useState();
   const [team2, setTeam2] = useState();
-  const [time, setTime] = useState();
-  const [playerGuess, setPlayerGuess] = useState();
-  const [userData, setUserData] = useState([]);
+
+
+  const [team1Id, setTeam1Id] = useState();
+  const [team2Id, setTeam2Id] = useState();
+  const [matchId, setMatchId] = useState();
+
 
   const infoUser = jwt_decode(token);
   const idUser = infoUser.sub;
 
   function next() {
     setCount(count + 1);
-    console.log(count);
   }
 
   function previous() {
     if (count > 0) {
       setCount(count - 1);
-      console.log(count);
     }
   }
 
   useEffect(() => {
     if (matches[count]?.phase === "group") {
+      setTeam1Id(matches[count].team_home);
+      setTeam2Id(matches[count].team_away);
+      setMatchId(matches[count].id);
       setTeam1(teams?.teams.find((id) => id.id === matches[count].team_home));
-      setTeam2(teams?.teams.find((id) => id.id === matches[count].team_away));
+      setTeam2(teams?.teams.find((id) => id.id === matches[count].team_away));      
     }
-  }, [count]);
-
-  console.log("time", time);
-
-  useEffect(() => {
-    if (matches[count]?.phase === "round16") {
+     if (matches[count]?.phase === "round16") {
       alert("Espere a próxima rodada");
       setCount(0);
     }
-    setTeam1(teams?.teams.find((id) => id.id === matches[count].team_home));
-    setTeam2(teams?.teams.find((id) => id.id === matches[count].team_away));
-  }, [matches]);
 
-  // const guesses = () => {
-  //   api
-  //     .get(`/users/${idUser}`, {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     })
-  //     .then((res) => {
-  //       setUserData(res.data);
-  //     })
-  //     .catch((err) => console.log(err));
+  }, [count, matches]);
 
-  //   api
-  //     .post("/guesses", { headers: { Authorization: `Bearer ${token}` } })
-  //     .then((matches) => {
-  //       setPlayerGuess(
-  //         playerGuess.matches.find((id) => id.id === matches[count].id)
-  //       );
-  //       if (playerGuess === matches.result) {
-  //         idUser.totalPhase(count + 10);
-  //         idUser.totalScore(count + 10);
-  //       }
-  //   }
-  // };
+ 
+
+
+  const guesses = (teamId, matchId) => {
+    api
+      .post(
+        "/guess",
+        {
+          userId: `${idUser}`,
+          guess: `${teamId}`,
+          matchesId: `${matchId}`,
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then((res) => {
+        next();
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
+ 
+
+ 
 
   return (
     <div>
@@ -101,35 +101,36 @@ const NewGuesses = () => {
         <Username>
           <h3>
             Eai,<span> palpiteiro</span>, vamos arriscar?
-            <FaSave onClick={() => setModalState(true)} />
           </h3>
         </Username>
         <Title>
           <h3>Palpites de Hoje</h3>
         </Title>
 
-        <Time></Time>
+
+
         <Matches>
           <Teams>
             <span>{team1?.nameCountry}</span>
             <Flag src={imgObj[team1?.id - 1]} />
-            <GuessButton>Vencedor</GuessButton>
+            <GuessButton onClick={() => guesses(team1Id, matchId)}>
+              Vencedor
+            </GuessButton>
           </Teams>
 
-          <GuessButton>Empate</GuessButton>
+          <GuessButton onClick={() => guesses(0, matchId)}>Empate</GuessButton>
           <Teams>
             <span>{team2?.nameCountry}</span>
             <Flag src={imgObj[team2?.id - 1]} />
-            <GuessButton>Vencedor</GuessButton>
+            <GuessButton onClick={() => guesses(team2Id, matchId)}>
+              Vencedor
+            </GuessButton>
           </Teams>
         </Matches>
-        <ButtonArea>
+        {/* <ButtonArea>
           <GuessButton onClick={() => previous()}>Jogo Anterior</GuessButton>
           <GuessButton onClick={() => next()}>Próximo Jogo</GuessButton>
-        </ButtonArea>
-        {modalState && (
-          <SaveGuesses modalState={modalState} setModalState={setModalState} />
-        )}
+        </ButtonArea> */}
       </Container>
       {/* <Dev /> */}
     </div>
