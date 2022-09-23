@@ -1,11 +1,12 @@
 import * as yup from 'yup';
 import {useForm} from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
-import { BackGroundDiv, CardDiv, FormLogin } from "./style";
+import { AreaBack, BackGroundDiv, CardDiv, FormLogin } from "./style";
 import Button from "../../components/Button";
 import { useContext } from 'react';
 import { UserContext } from '../../providers/User';
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
 const Login = () => {
     const history = useHistory()
@@ -25,6 +26,9 @@ const Login = () => {
 
     return(
         <BackGroundDiv>
+            <AreaBack>
+                <Link to='/'> <IoMdArrowRoundBack color='black' size={46}/> </Link>
+            </AreaBack>
             <CardDiv>
                 <h3>Entrar em Campo</h3>
                 <FormLogin onSubmit={handleSubmit(singIn)}>
