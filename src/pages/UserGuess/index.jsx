@@ -12,10 +12,15 @@ import Sidebar from "../../components/Sidebar";
 import { useContext } from "react";
 import { MatchesContext } from "../../providers/Matches";
 import { TeamsContext } from "../../providers/Teams";
+import { useGuess } from "../../providers/guess";
 
 const UserGuess = () => {
   const { matches } = useContext(MatchesContext);
   const { teams } = useContext(TeamsContext);
+  const { guess, matchScore } = useGuess();
+
+  console.log("palpites tela", guess);
+  console.log("resultadopartidas", matchScore);
 
   const phaseGroup = matches.filter((match) => {
     return match.phase === "group";
@@ -57,7 +62,7 @@ const UserGuess = () => {
 
               return (
                 <tr key={match.id}>
-                  <td>Brasil</td>
+                  <td>{teamHome.nameCountry}</td>
                   <td className="jogo">
                     {teamHome.nameCountry} X {teamAway.nameCountry} -{" "}
                     {match.time}
@@ -65,7 +70,7 @@ const UserGuess = () => {
                   <td>
                     {results === undefined ? "Empate" : results.nameCountry}
                   </td>
-                  <td>10 pts</td>
+                  <td> - </td>
                 </tr>
               );
             })}

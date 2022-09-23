@@ -28,7 +28,6 @@ const DashboardExtra = () => {
   const { user, token } = useContext(UserContext);
   const { setGroupId, modalState, setModalState } = useGroupId();
 
-   
   const [groups, setGroups] = useState([]);
   const [visible, setVisible] = useState(false);
 
@@ -38,7 +37,7 @@ const DashboardExtra = () => {
   const history = useHistory();
 
   useEffect(() => {
-    api    
+    api
       .get("/groups", { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
         setGroups(res.data);
@@ -54,7 +53,7 @@ const DashboardExtra = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        setUserData(res.data);
+        // setUserData(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -107,7 +106,7 @@ const DashboardExtra = () => {
         <Sidebar />
         <Top />
         <Username>
-          <h3>É gool {userData.name}!!</h3>
+          {/* <h3>É gool {userData.name}!!</h3> */}
           <h2>Entre nos seus grupos e aposte no melhor time.</h2>
         </Username>
         <Search>
