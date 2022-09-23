@@ -1,12 +1,13 @@
 import * as yup from 'yup';
 import {useForm} from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
-import { BackGroundDiv, CardDiv, FormLogin } from "./style";
+import { BackGroundDiv, CardDiv, FormLogin, areaBack, AreaBack } from "./style";
 import Button from "../../components/Button";
 import { useContext } from 'react';
 import { UserContext } from '../../providers/User';
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Input from '../../components/Input';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
 const SignUp = () => {
 const {signUp} = useContext(UserContext);
@@ -32,6 +33,10 @@ const {signUp} = useContext(UserContext);
 
     return(
         <BackGroundDiv>
+            <AreaBack>
+                <Link to='/'> <IoMdArrowRoundBack color='black' size={46}/> </Link>
+            </AreaBack>
+
             <CardDiv>
                 <h3>Fazer parte do time</h3>
                 <FormLogin onSubmit={handleSubmit(registering)}>
