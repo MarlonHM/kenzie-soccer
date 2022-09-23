@@ -9,6 +9,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import jwt_decode from "jwt-decode";
+import { toast } from "react-toastify";
 
 const UserModal = ({ modalUserState, setModalUserState }) => {
   const history = useHistory();
@@ -17,12 +18,13 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
   const infoUser = jwt_decode(token);
   const idUser = infoUser.sub;
 
+  console.log("user", user);
+
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório: Nome"),
-    email: yup
-      .string().email('Email inválido')
-  });
+    email: yup.string().email('Email inválido').required("Campo obrigatório: Email")
 
+  });
 
   const {
     register,
@@ -32,7 +34,12 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
 
   const edit = (data) => {
     editUser(data);
-    history.push('/dashboard')
+
+
+    toast.success("Usuário alterado com sucesso!");
+    setModalUserState(false);
+    history.push("/dashboard");
+
   };
 
   return (
@@ -55,7 +62,7 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
             <Input
               label="Email"
               type="email"
-              placeholder={user.email}
+              value={user.email}
               messageErro={errors.email?.message}
               register={register}
               name="email"
