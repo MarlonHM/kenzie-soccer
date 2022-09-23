@@ -9,6 +9,19 @@ export const BackGroundDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 0;
+`;
+
+export const AreaBack = styled.div`
+  z-index: 1;
+  position: absolute;
+  left: 40px;
+  top: -90%;
+
+  @media (min-width: 360px) and (max-width: 650px) {
+    top: -95%;
+    left: 10px;
+  }
 `;
 
 export const CardDiv = styled.div`
