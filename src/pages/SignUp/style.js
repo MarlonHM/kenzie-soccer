@@ -9,6 +9,18 @@ export const BackGroundDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 0;
+`;
+
+export const AreaBack = styled.div`
+  z-index: 1;
+  position: absolute;
+  left: 40px;
+  top: 10px;
+
+  @media (min-width: 360px) and (max-width: 650px) {
+    left: 10px;
+  }
 `;
 
 export const CardDiv = styled.div`
@@ -47,11 +59,12 @@ export const FormLogin = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
 
   input {
     margin: 10px 0;
-    width: 70%;
+    width: 100%;
     height: 3em;
   }
 
