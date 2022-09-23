@@ -12,13 +12,15 @@ import { HiUserGroup } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
 
 import UserModal from "../UserModal";
-import { useUser } from "../../providers/User";
+import { UserContext, useUser } from "../../providers/User";
+import { useContext } from "react";
 
 export default function Sidebar() {
   const [Extends, setExtends] = useState(false);
   const [visible, setVisible] = useState(false);
   const { setToken } = useUser();
   const history = useHistory();
+  const { getUser } = useContext(UserContext);
 
   const [modalUserState, setModalUserState] = useState(false);
 
@@ -69,13 +71,20 @@ export default function Sidebar() {
               <GiOnTarget />
               {Extends ? <h2>Palpites</h2> : <></>}
             </li>
-            <li onClick={() => setModalUserState(true)}>
+            <li
+              onClick={() => {
+                setModalUserState(true);
+                getUser();
+              }}
+            >
               <FaUserEdit />
               {Extends ? <h2>Editar usuário</h2> : <></>}
             </li>
             <li className="contrution tooltip">
               <HiUserGroup />
-              <span class="tooltiptext"><strong>CUIDADO!</strong> <br /> Área em construção</span>
+              <span className="tooltiptext">
+                <strong>CUIDADO!</strong> <br /> Área em construção
+              </span>
               {Extends ? <h2>Grupos</h2> : <></>}
             </li>
 
