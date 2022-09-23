@@ -21,14 +21,13 @@ const AboutKenzieSoccer = () => {
             </p>
 
             <p>
-              Foi criado pelos alunos do Front-End Noturno, da{" "}
-              <strong>Kenzie Academy Brasil</strong>, como Projeto Final (
+              Foi criado pelos alunos do Front-End Noturno, da 
+              <strong> Kenzie Academy Brasil</strong>, como Projeto Final (
               <strong>Capstone</strong>) para a conclusão do curso.
             </p>
 
             <p>
-              Os apostadores poderão entrar e criar grupos (ou não) para
-              participar de disputas de palpites, optando por escolher o time
+              Os apostadores poderão participar de disputas de palpites, optando por escolher o time
               vencedor da partida ou apostar em um empate.
             </p>
 

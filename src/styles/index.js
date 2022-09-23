@@ -45,7 +45,7 @@ const GlobalStyle = createGlobalStyle`
       font-family: 'Inter', sans-serif;
    }
 
-   h2, h3, button {
+   h2, h3, button, th {
       font-family: 'Karantina', cursive;
    }
 
@@ -70,7 +70,7 @@ const GlobalStyle = createGlobalStyle`
 
    h2 {
       @media (max-width: 480px) {
-         font-size: 44px !important;
+         font-size: 40px ;
       }
    }
 `;

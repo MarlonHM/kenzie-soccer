@@ -42,7 +42,7 @@ export const Container = styled.header`
       background: linear-gradient(
         180deg,
         var(--yellow) 27.93%,
-        var(--yellow-3)
+        var(--yellow-2)
       );
 
       -webkit-background-clip: text;
