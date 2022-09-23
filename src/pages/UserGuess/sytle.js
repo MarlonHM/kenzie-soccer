@@ -27,7 +27,11 @@ export const DivHeader = styled.div`
 
 export const Section = styled.section`
   margin: 50px 150px;
-  float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   h2 {
     color: var(--wine);
     font-size: 2rem;
@@ -39,10 +43,6 @@ export const Section = styled.section`
 
   @media (min-width: 360px) and (max-width: 650px) {
     float: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     margin: 5rem 0;
   }
 `;

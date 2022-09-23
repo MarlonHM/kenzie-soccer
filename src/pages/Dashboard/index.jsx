@@ -20,10 +20,10 @@ import {
 import { Buttons, Groups } from "./style";
 import { Search } from "./style";
 import { useHistory } from "react-router-dom";
-
 import Ellipse from "../../assets/Ellipse.png";
 import { useGroupId } from "../../providers/Groups";
 import NewGroup from "../../components/NewGroup";
+import DashComponent from "../../components/DashComponent";
 
 const Dashboard = () => {
   const { user, token } = useContext(UserContext);
@@ -38,114 +38,14 @@ const Dashboard = () => {
 
   const history = useHistory();
 
-  useEffect(() => {
-    api
-      .get("/groups", { headers: { Authorization: `Bearer ${token}` } })
-      .then((res) => {
-        setGroups(res.data);
-        showMessage();
-      })
-
-      .catch((err) => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    api
-      .get(`/users/${idUser}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        setUserData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  const search = (param) => {
-    api
-      .get("/groups", { headers: { Authorization: `Bearer ${token}` } })
-      .then((res) => {
-        setGroups(res.data.filter((item) => item.groupName.includes(param)));
-      })
-      .catch((err) => showMessage());
-  };
-
-  const myGroups = () => {
-    api
-      .get("/groups", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        setGroups(
-          res.data.filter((groups) => groups.userId === Number(idUser))
-        );
-      })
-      .catch((err) => showMessage());
-  };
-
-  const allGroups = () => {
-    api
-      .get("/groups", { headers: { Authorization: `Bearer ${token}` } })
-      .then((grp) => {
-        setGroups(grp.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const showMessage = () => {
-    if (groups.length < 1) {
-      setVisible(true);
-    }
-  };
-
-  const Detail = (id) => {
-    setGroupId(id);
-    history.push("/groupDetail");
-  };
-
   return (
     <div>
       <Container>
         <Sidebar />
         <Top />
-        <Username>
-          <Return />
-          <h3>É gool {userData.name}!!</h3>
-          <h2>Bem vindo confira sua pontuação!</h2>
-        </Username>
-        <Search>
-          <Form onSubmit={search}>
-            <input
-              type="text"
-              placeholder="Pesquise um grupo"
-              onChange={(e) => search(e.target.value)}
-            />
-          </Form>
-          <Buttons>
-            <Button secondary titleButton="Meus Grupos" onClick={myGroups} />
-            <Button
-              tertiary
-              titleButton="Novo Grupo"
-              onClick={() => setModalState(true)}
-            />
-          </Buttons>
-        </Search>
         <div>{modalState && <NewGroup />}</div>
-        <Groups>
-          {groups.length > 0
-            ? groups.map((group) => (
-                <CardGroup key={group.id} onClick={() => Detail(group.id)}>
-                  <img src={Ellipse} alt="Troféu" />
-                  <Title>
-                    <h3>{group.groupName}</h3>
-                  </Title>
-                </CardGroup>
-              ))
-            : visible && (
-                <DivMessage>
-                  <h2>Nenhum grupo encontrado, pesquise novamente!</h2>
-                </DivMessage>
-              )}
-        </Groups>
+          <DashComponent />
+
       </Container>
       <Dev />
     </div>

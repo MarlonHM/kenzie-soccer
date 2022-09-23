@@ -26,7 +26,7 @@ const Routes = () => {
           <SignUp />
         </Route>
         <Route path="/login">
-          {token ? <Login /> : <Redirect to="/dashboard" />}
+          {token ?  <Redirect to="/dashboard" /> : <Login />}
         </Route>
         <Route path="/dashboard">
           {token ? <Dashboard /> : <Redirect to="/login" />}
