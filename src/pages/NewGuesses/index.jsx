@@ -33,7 +33,7 @@ const NewGuesses = () => {
 
   const [team1, setTeam1] = useState();
   const [team2, setTeam2] = useState();
-  // const [time, setTime] = useState();
+  const [time, setTime] = useState();
   const [playerGuess, setPlayerGuess] = useState();
   const [userData, setUserData] = useState([]);
 
@@ -59,7 +59,7 @@ const NewGuesses = () => {
     }
   }, [count]);
 
-  // console.log("time", time);
+  console.log("time", time);
 
   useEffect(() => {
     if (matches[count]?.phase === "round16") {
@@ -90,9 +90,7 @@ const NewGuesses = () => {
   //         idUser.totalPhase(count + 10);
   //         idUser.totalScore(count + 10);
   //       }
-  //     }
-  //   };
-
+  //   }
   // };
 
   return (
@@ -110,7 +108,7 @@ const NewGuesses = () => {
           <h3>Palpites de Hoje</h3>
         </Title>
 
-        {/* <Time></Time> */}
+        <Time></Time>
         <Matches>
           <Teams>
             <span>{team1?.nameCountry}</span>

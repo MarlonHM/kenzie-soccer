@@ -7,31 +7,8 @@ export const Top = styled.div`
   width: 100%;
   max-width: 100vw;
   background-color: var(--wine);
-
   @media (max-width: 768px) {
     margin-top: 140px;
-  }
-`;
-
-export const Username = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 20px 20px;
-
-  h2 {
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  h3 {
-    margin-bottom: 15px;
-    color: #e6c619;
-    font-weight: 400;
-    font-size: 25px;
-  }
-
-  @media (min-width: 768px) {
-    margin-left: 150px;
   }
 `;
 

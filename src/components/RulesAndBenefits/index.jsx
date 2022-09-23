@@ -14,9 +14,7 @@ const RulesAndBenefits = () => {
 
         <div className="internal-container">
           <p>
-            Na aplicação existem grupos (públicos ou privados) onde os
-            participantes deverão informar palpites para os jogos de cada fase
-            (Grupos, Oitavas, Quartas, Semifinais, 3º Lugar e Final).
+            Os palpites para os jogos de cada fase: Grupos, Oitavas, Quartas, Semifinais, 3º Lugar e Final.
           </p>
 
           <p>
@@ -41,15 +39,6 @@ const RulesAndBenefits = () => {
               <strong>Palpite errado</strong>: nem ganha nem perde pontos.
             </li>
           </ul>
-
-          <h3>Critério de desempate:</h3>
-
-          <ul>
-            <li>
-              Em caso de empate, vence quem acertou mais vezes{" "}
-              <strong>Vencedor</strong>.
-            </li>
-          </ul>
         </div>
 
         <h2>
@@ -70,8 +59,7 @@ const RulesAndBenefits = () => {
             <img src={TrophyImg} alt="Espírito esportivo" />
             <span>Espírito esportivo</span>
             <p>
-              Conhecer novas pessoas e participar de grupos para aflorar o
-              espirito esportivo.
+              Aflorar o acompanhamento dos jogos e votar sobre a melhor seleção.
             </p>
           </div>
 

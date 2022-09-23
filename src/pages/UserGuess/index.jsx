@@ -103,42 +103,6 @@ const UserGuess = () => {
         </TableSection>
       </Section>
 
-      <Section>
-        <h2>Seu ranking por Grupo</h2>
-        <TableSection>
-          <tbody>
-            <tr>
-              <th className="group">Grupos</th>
-              <th>Posição</th>
-            </tr>
-            <tr>
-              <td className="group">Grupo 1</td>
-              <td>10º</td>
-            </tr>
-            <tr>
-              <td className="group">Grupo 2</td>
-              <td>24º</td>
-            </tr>
-            <tr>
-              <td className="group">Grupo 3</td>
-              <td>3º</td>
-            </tr>
-            <tr>
-              <td className="group">Grupo 4</td>
-              <td>2º</td>
-            </tr>
-            <tr>
-              <td className="group">Grupo 5</td>
-              <td>25º</td>
-            </tr>
-            <tr>
-              <td className="group">Grupo 6</td>
-              <td>6º</td>
-            </tr>
-          </tbody>
-        </TableSection>
-      </Section>
-
       <Footer>
         <Dev />
       </Footer>
