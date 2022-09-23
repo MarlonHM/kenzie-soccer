@@ -75,7 +75,7 @@ export default function Sidebar() {
             </li>
             <li className="contrution tooltip">
               <HiUserGroup />
-              <span class="tooltiptext"><strong>CUIDADO!</strong> <br /> Área em construção</span>
+              <span className="tooltiptext"><strong>CUIDADO!</strong> <br /> Área em construção</span>
               {Extends ? <h2>Grupos</h2> : <></>}
             </li>
 

@@ -11,10 +11,6 @@ import jwt_decode from "jwt-decode";
 const DashComponent = () => {
   const {user, token} = useContext(UserContext);
   const [userData, setUserData] = useState([]);
-  console.log(userData)
-
-  console.log(user)
-
   const infoUser = jwt_decode(token);
   const idUser = infoUser.sub;
 
