@@ -18,11 +18,13 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
   const infoUser = jwt_decode(token);
   const idUser = infoUser.sub;
 
+  console.log("user", user);
+
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório: Nome"),
     email: yup.string().email('Email inválido').required("Campo obrigatório: Email")
-  });
 
+  });
 
   const {
     register,
@@ -32,6 +34,12 @@ const UserModal = ({ modalUserState, setModalUserState }) => {
 
   const edit = (data) => {
     editUser(data);
+
+
+    toast.success("Usuário alterado com sucesso!");
+    setModalUserState(false);
+    history.push("/dashboard");
+
   };
 
   return (
